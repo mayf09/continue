@@ -1,60 +1,60 @@
 ---
-title: Select a provider
+title: 选择一个提供者
 description: Swap out different LLM providers
 keywords: [openai, anthropic, PaLM, ollama, ggml]
 ---
 
-# Select a model provider
+# 选择一个模型提供者
 
-Continue makes it easy to swap out different LLM providers. You can either click the "+" button next to the model dropdown to configure in the GUI or manually add them to your `config.json`. Once you've done this, you will be able to switch between them in the model selection dropdown.
+Continue 可以简单地切换不同的 LLM 提供者。你可以点击模型下拉框旁边的 "+" 按钮在 GUI 中配置，或者手动添加它们到你的 `config.json` 中。一旦你完成这个，你可以在模型选择下拉框中切换它们。
 
-**In addition to selecting a model provider, you will need to figure out [what LLM to use](./select-model.md).**
+**除了选择一个模型提供者，你需要找出 [使用哪个 LLM](./select-model.md)。**
 
-## Local
+## 本地
 
-You can run a model on your local computer using:
+你可以运行一个模型在你的本地电脑上，使用：
 
 - [Ollama](../reference/Model%20Providers/ollama.md)
 - [LM Studio](../reference/Model%20Providers/lmstudio.md)
 - [Llama.cpp](../reference/Model%20Providers/llamacpp.md)
-- [llamafile](../reference/Model%20Providers/llamafile) ((OpenAI compatible server)
-- [LocalAI](../reference/Model%20Providers/openai.md) (OpenAI compatible server)
-- [Text generation web UI](../reference/Model%20Providers/openai.md) (OpenAI compatible server)
-- [FastChat](../reference/Model%20Providers/openai.md) (OpenAI compatible server)
-- [llama-cpp-python](../reference/Model%20Providers/openai.md) (OpenAI compatible server)
-- [TensorRT-LLM](https://github.com/NVIDIA/trt-llm-as-openai-windows?tab=readme-ov-file#examples) (OpenAI compatible server)
+- [llamafile](../reference/Model%20Providers/llamafile) ((OpenAI 兼容服务器)
+- [LocalAI](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
+- [Text generation web UI](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
+- [FastChat](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
+- [llama-cpp-python](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
+- [TensorRT-LLM](https://github.com/NVIDIA/trt-llm-as-openai-windows?tab=readme-ov-file#examples) (OpenAI 兼容服务器)
 
-Once you have it running, you will need to configure it in the GUI or manually add it to your `config.json`.
+一旦你运行它，你需要在 GUI 中配置它，或者手动添加它到你的 `config.json` 。
 
-## Cloud
+## 云上
 
-You can deploy a model in your [AWS](https://github.com/continuedev/deploy-os-code-llm#aws), [GCP](https://github.com/continuedev/deploy-os-code-llm#gcp), [Azure](https://github.com/continuedev/deploy-os-code-llm#azure), or [other clouds](https://github.com/continuedev/deploy-os-code-llm#others-2) using:
+你可以部署一个模型在你的 [AWS](https://github.com/continuedev/deploy-os-code-llm#aws), [GCP](https://github.com/continuedev/deploy-os-code-llm#gcp), [Azure](https://github.com/continuedev/deploy-os-code-llm#azure), 或者 [其他云](https://github.com/continuedev/deploy-os-code-llm#others-2) 使用:
 
 - [HuggingFace TGI](https://github.com/continuedev/deploy-os-code-llm#tgi)
 - [vLLM](https://github.com/continuedev/deploy-os-code-llm#vllm)
 - [SkyPilot](https://github.com/continuedev/deploy-os-code-llm#skypilot)
-- [Anyscale Private Endpoints](https://github.com/continuedev/deploy-os-code-llm#anyscale-private-endpoints) (OpenAI compatible API)
+- [Anyscale Private Endpoints](https://github.com/continuedev/deploy-os-code-llm#anyscale-private-endpoints) (OpenAI 兼容 API)
 
-If the API you use is OpenAI-compatible, you will be able to use the "openai" provider in `config.json` and change the `apiBase` to point to the server. Otherwise, you may need to wire up a new LLM object in `config.ts`. Learn how to do this [here](configuration.md#defining-a-custom-llm-provider)
+如果你使用的 API 是 OpenAI 兼容的，你可以使用 `config.json` 中的 "openai" 提供者，修改 `apiBase` 指向那个服务器。否则，你需要在 `config.ts` 中编写一个新的 LLM 类。学习如何这样做，[这里](configuration.md#defining-a-custom-llm-provider)
 
 ## SaaS
 
-### Open-source LLMs
+### 开源 LLM
 
-You can deploy open-source LLMs on a service using:
+你可以部署开源 LLM 作为一个服务，使用：
 
 - [Together](../reference/Model%20Providers/togetherllm.md)
 - [HuggingFace Inference Endpoints](../reference/Model%20Providers/huggingfaceinferenceapi.md)
-- [Anyscale Endpoints](../reference/Model%20Providers/openai.md) (OpenAI compatible API)
+- [Anyscale Endpoints](../reference/Model%20Providers/openai.md) (OpenAI 兼容 API)
 - [Replicate](../reference/Model%20Providers/replicatellm.md)
 - [Deepinfra](../reference/Model%20Providers/deepinfra.md)
 
-### Commercial LLMs
+### 商业 LLMs
 
-You can use commercial LLMs via APIs using:
+你可以使用商业 LLMs 通过 API 使用：
 
 - [OpenAI API](../reference/Model%20Providers/openai.md)
-- [Azure OpenAI Service](../reference/Model%20Providers/openai.md) (OpenAI compatible API)
+- [Azure OpenAI Service](../reference/Model%20Providers/openai.md) (OpenAI 兼容 API)
 - [Anthrophic API](../reference/Model%20Providers/anthropicllm.md)
 - [Google PaLM API](../reference/Model%20Providers/googlepalmapi.md)
 - [OpenAI free trial](../reference/Model%20Providers/freetrial.md)

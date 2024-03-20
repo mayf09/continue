@@ -1,6 +1,6 @@
-# Overview
+# 概述
 
-Continue is the easiest way to code with any [Large Language Model (LLM)](https://www.youtube.com/watch?v=zjkBMFhNj_g). You can use it with commercial models like GPT-4 via the OpenAI API, open-source models like CodeLlama running on your laptop with Ollama, and everything in between.
+Continue 是使用任何 [Large Language Model (LLM)](https://www.youtube.com/watch?v=zjkBMFhNj_g) 编码的最简单的方式。你可以使用它，通过商业模型，比如 GPT-4 ，通过 OpenAI API ，开源模型，比如 CodeLlama ，使用 Ollama 运行在你的笔记本上，以及所有中间的东西。
 
 When you first install Continue, you can try it out for free using a proxy server that securely makes calls with our API keys to models like GPT-4, Gemini Pro, and Phind CodeLlama via OpenAI, Google, and Together respectively.
 

@@ -1,18 +1,18 @@
 ---
-title: Overview
-description: Continue can be deeply customized
+title: 概述
+description: Continue 可以被深度定制
 keywords: [custom, slash commands, models, context providers]
 ---
 
-# Overview
+# 概述
 
-Continue can be deeply customized by editing `~/.continue/config.json` (`%userprofile%\.continue\config.json` for Windows) and `config.ts` on your machine. These files are created the first time you run Continue.
+Continue 可以被深度定制，通过编辑在你机器上的 `~/.continue/config.json` (`%userprofile%\.continue\config.json` 对于 Windows) 和 `config.ts` 。 这些文件在你第一次运行 Continue 时创建。
 
-Currently, you can customize the following:
+目前，你可以定制以下内容：
 
-- [Models](../model-setup/select-model.md) and [providers](../model-setup/select-provider.md)
-- [Context Providers](./context-providers.md) - Type '@' to easily add attachments to your prompt. Define which sources you want to reference, including GitHub Issues, terminal output, or automatically retrieved snippets from your codebase.
-- [Slash Commands](./slash-commands.md) - Call custom prompts or programs written with our SDK by typing `/`.
-- [Other Configuration](../reference/config.mdx) - Configure other settings like the system message and temperature.
+- [模型](../model-setup/select-model.md) 和 [提供者](../model-setup/select-provider.md)
+- [上下文提供者](./context-providers.md) - 输入 '@' 来简单地添加附加内容到你的提示语。定义你想引用哪些资源，包括 GitHub Issues ，终端输出，或者你的代码库的自动检索片段。
+- [斜杠命令](./slash-commands.md) - 通过输入 `/` ，调用定制提示语或者使用我们的 SDK 编写的程序。
+- [其他配置](../reference/config.mdx) - 配置其他设置，比如系统信息和温度系数。
 
-If you'd like to share Continue configuration with others, you can add a `.continuerc.json` to the root of your project. It has the same JSON Schema definition as `config.json`, and will automatically be applied on top of the local `config.json`.
+如果你想分享 Continue 配置给其他人，你可以在你的项目根目录添加一个 `.continuerc.json` 。它有和 `config.json` 相同的 JSON Schema 定义，将会自动应用在本地 `config.json` 之上。

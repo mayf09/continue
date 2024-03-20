@@ -1,14 +1,14 @@
 ---
-title: Running Continue without Internet
-description: How to run Continue without Internet
+title: 不联网的情况下使用 Continue
+description: 如果在不联网的情况下使用 Continue
 keywords: [no internet, air-gapped, local model]
 ---
 
-# Running Continue without Internet
+# 不联网的情况下使用 Continue
 
-Continue can be run even on an air-gapped computer if you use a local model. Only a few adjustments are required for this to work.
+Continue 甚至可以在物理隔离的计算机上运行，如果你使用的本地模型。只需要少量调整就可以工作。
 
-1. Download the latest .vsix file from the [Open VSX Registry](https://open-vsx.org/extension/Continue/continue) and [install it to VS Code](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix).
-2. Open `~/.continue/config.json` and set `"allowAnonymousTelemetry": false`. This will stop Continue from attempting requests to PostHog.
-3. Also in `config.json`, set the default model to a local model. You can read about the available options [here](../model-setup/select-model.md).
-4. Restart VS Code to ensure that the changes to `config.json` take effect.
+1. 从 [Open VSX Registry](https://open-vsx.org/extension/Continue/continue) 下载最新的 .vsix 文件， [安装到 VS Code](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) 。
+2. 打开 `~/.continue/config.json` 并设置 `"allowAnonymousTelemetry": false` 。这将会停止 Continue 尝试请求 PostHog 。
+3. 同样在 `config.json` 中，设置默认的模型为本地的模型。你可以看到可用的选项 [这里](../model-setup/select-model.md) 。
+4. 重启 VS Code 确保修改 `config.json` 生效。

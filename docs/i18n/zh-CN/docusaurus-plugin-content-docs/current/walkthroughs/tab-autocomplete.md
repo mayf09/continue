@@ -1,20 +1,20 @@
-# Tab Autocomplete (beta)
+# Tab 自动补全 (beta)
 
-Continue now provides support for tab autocomplete in [the VS Code extension](https://marketplace.visualstudio.com/items?itemName=Continue.continue) (make sure to download the pre-release). We will be greatly improving the experience over the next few releases, and it is always helpful to hear feedback. If you have any problems or suggestions, please let us know in our [Discord](https://discord.gg/vapESyrFmJ).
+Continue 现在支持在 [the VS Code 扩展](https://marketplace.visualstudio.com/items?itemName=Continue.continue) 中 tab 自动补全（确保下载预发布版本）。我们将在后面几个发布中大力提高体验，听取反馈总是有帮助的。如果你有任何问题或建议，请让我们知道，在我们的 [Discord](https://discord.gg/vapESyrFmJ) 。
 
-## Setting up with Ollama (default)
+## 使用 Ollama 设置（默认）
 
-We recommend setting up tab-autocomplete with a local Ollama instance. To do this, first download the latest version of Ollama from [here](https://ollama.ai). Then, run the following command to download our recommended model:
+我们推荐设置 tab 补全，使用一个本地的 Ollama 实例。为了这么做，首先从 [这里](https://ollama.ai) 下载 Ollam 的最新版。然后，运行下面的命令来下载我们推荐的模型：
 
 ```bash
 ollama run starcoder:3b
 ```
 
-Once it has been downloaded, you should begin to see completions in VS Code.
+一旦下载完成，你应该开始在 VS Code 中看到补全。
 
-## Setting up a custom model
+## 设置一个定制的模型
 
-All of the configuration options available for chat models are available to use for tab-autocomplete. For example, if you wanted to use a remote Ollama instance you would edit your `config.json` like this:
+所有适用于聊天模型的配置选项都适用于 tab 补全使用。例如，如果你希望使用一个远程 Ollama 实例，你应该编辑你的 `config.json` 像这样:
 
 ```json title=~/.continue/config.json
 {
@@ -28,30 +28,30 @@ All of the configuration options available for chat models are available to use 
 }
 ```
 
-If you aren't yet familiar with the available options, you can learn more in our [overview](../model-setup/overview.md).
+如果你还不熟悉可用的选项，你可以在我们的 [概述](../model-setup/overview.md) 中学到更多。
 
-## Configuration Options
+## 配置选项
 
-The following can be configured in `config.json`:
+以下可以在 `config.json` 中配置：
 
 ### `tabAutocompleteModel`
 
-This is just another object like the ones in the `"models"` array of `config.json`. You can choose and configure any model you would like, but we strongly suggest using a small model made for tab-autocomplete, such as `deepseek-1b`, `starcoder-1b`, or `starcoder-3b`.
+这只是像 `config.json` 中 `"models"` 列表的另一个对象。你可以选择并配置你喜欢的任何模型，但是我们强烈建议使用一个小的模型来 tab 自动补全，比如 `deepseek-1b`, `starcoder-1b` 或 `starcoder-3b`.
 
 ### `tabAutocompleteOptions`
 
-This object allows you to customize the behavior of tab-autocomplete. The available options are:
+这个对象允许你定制 tab 自动补全的行为。可用的选项是：
 
-- `useCopyBuffer`: Determines whether the copy buffer will be considered when constructing the prompt. (Boolean)
-- `useSuffix`: Determines whether to use the file suffix in the prompt. (Boolean)
-- `maxPromptTokens`: The maximum number of prompt tokens to use. A smaller number will yield faster completions, but less context. (Number)
-- `debounceDelay`: The delay in milliseconds before triggering autocomplete after a keystroke. (Number)
-- `maxSuffixPercentage`: The maximum percentage of the prompt that can be dedicated to the suffix. (Number)
-- `prefixPercentage`: The percentage of the input that should be dedicated to the prefix. (Number)
-- `template`: An optional template string to be used for autocomplete. It will be rendered with the Mustache templating language, and is passed the 'prefix' and 'suffix' variables. (String)
-- `multilineCompletions`: Whether to enable multiline completions ("always", "never", or "auto"). Defaults to "auto".
+- `useCopyBuffer`: 决定当创建提示词时，是否考虑 copy buffer 。(Boolean)
+- `useSuffix`: 决定是否在提示词中使用文件后缀。(Boolean)
+- `maxPromptTokens`: 要使用的提示词 token 的最大数量。一个较小的数字将生成更快的补全，但是更少的上下文。(Number)
+- `debounceDelay`: 在按键之后触发自动补全的延迟毫秒时间。(Number)
+- `maxSuffixPercentage`: 提示词专用于后缀的最大百分比。(Number)
+- `prefixPercentage`: 提示词专用于前缀的最大百分比。(Number)
+- `template`: 一个可选的用于自动补全的模板字符串。它将使用 Mustache 模板语言渲染，传递 'prefix' 和 'suffix' 参数。(String)
+- `multilineCompletions`: 是否启用多行补全 ("always", "never", or "auto") 。 默认是 "auto" 。
 
-### Full example
+### 完整的例子
 
 ```json title=~/.continue/config.json
 {
@@ -69,29 +69,29 @@ This object allows you to customize the behavior of tab-autocomplete. The availa
 }
 ```
 
-## Troubleshooting
+## 问题解决
 
-### I'm not seeing any completions
+### 我没有看到任何补全
 
-Follow these steps to ensure that everything is set up correctly:
+跟随以下步骤确保所有东西设置正确：
 
-1. Make sure you have the pre-release version of the extension installed.
-2. Make sure you have the "Enable Tab Autocomplete" setting checked (can toggle by clicking the "Continue" button in the status bar).
-3. Make sure you have downloaded Ollama.
-4. Run `ollama run starcoder:3b` to verify that the model is downloaded.
-5. Make sure that any other completion providers are disabled (e.g. Copilot), as they may interfere.
-6. Make sure that you aren't also using another Ollama model for chat. This will cause Ollama to constantly load and unload the models from memory, resulting in slow responses (or none at all) for both.
-7. Check the output of the logs to find any potential errors (cmd/ctrl+shift+p -> "Toggle Developer Tools" -> "Console" tab).
-8. If you are still having issues, please let us know in our [Discord](https://discord.gg/vapESyrFmJ) and we'll help as soon as possible.
+1. 确认你安装了插件的预发布版本。
+2. 确认你启用了 "Enable Tab Autocomplete" 设置 (可以通过点击状态栏的 "Continue" 按钮) 。
+3. 确认你下载了 Ollama 。
+4. 运行 `ollama run starcoder:3b` 来确认模型已经下载。
+5. 确认任何其他的补全提供者被禁用（比如 Copilot） ，它们可能干扰。
+6. 确认你没有使用其他 Ollama 模型来聊天。这将导致 Ollama 不断从内存中加载、卸载模型，导致慢回复（或没有）。
+7. 检查日志输出来查找可能的错误 (cmd/ctrl+shift+p -> "Toggle Developer Tools" -> "Console" 标签页)。
+8. 如果你还有问题，请让我们知道，在我们的 [Discord](https://discord.gg/vapESyrFmJ) ，我们将尽快提供帮助。
 
-### Completions are slow
+### 补全很慢
 
-Depending on your hardware, you may want to try a smaller, faster model. If 3b isn't working for you we recommend trying `deepseek-coder:1.3b-base`.
+基于你的硬件，你可能想尝试一个更小、更快的模型。如果 3b 对你来说不工作，我们推荐尝试 `deepseek-coder:1.3b-base`。
 
-### Completions don't know about my code
+### 补全不知道我的代码
 
-We are working on this! Right now Continue uses the Language Server Protocol to add definitions to the prompt, as well as using similarity search over recently edited files. We will be improving the accuracy of this system greatly over the next few weeks.
+我们正在解决这个！现在， Continue 使用 Language Server Protocol 来添加定义到提示词中，同时对最近编辑的文件使用相似性检查。我们将在之后几周极大提高这个系统的准确度。
 
-### Completions contain formatting errors
+### 补全包含格式错误
 
-If you're seeing a common pattern of mistake that might be helpful to report, please share in Discord. We will do our best to fix it as soon as possible.
+如果你发现通用模式的错误，报告可能是有用的，请在 Discord 分享。我们将尽快尽最大努力修复它。

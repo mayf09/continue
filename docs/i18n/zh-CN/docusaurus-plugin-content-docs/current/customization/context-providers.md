@@ -1,88 +1,88 @@
 ---
-title: Context Providers
-description: Type '@' to select content to the LLM as context
+title: 上下文提供者
+description: 输入 '@' 来选择内容给 LLM 作为上下文
 keywords: [context, "@", provider, LLM]
 ---
 
-# Context Providers
+# 上下文提供者
 
-Context Providers allow you to type '@' and see a dropdown of content that can all be fed to the LLM as context. Every context provider is a plugin, which means if you want to reference some source of information that you don't see here, you can request (or build!) a new context provider.
+上下文提供者允许你输入 '@' 看到一个下拉框内容，可以输入给 LLM 作为上下文。每个上下文提供者是一个插件，也就是说如果你想要引用一些不在这里的信息来源，你可以请求（或者构建！）一个新的上下文提供者。
 
-As an example, say you are working on solving a new GitHub Issue. You type '@issue' and select the one you are working on. Continue can now see the issue title and contents. You also know that the issue is related to the files 'readme.md' and 'helloNested.py', so you type '@readme' and '@hello' to find and select them. Now these 3 "Context Items" are displayed inline with the rest of your input.
+举个例子，比如你正在解决一个 Github Issue 。你输入 '@issue' 并选择一个你工作的。 Continue 可以看到 issue 的标题和内容。你也知道那个 issue 与文件 'readme.md' 和 'helloNested.py' 相关，所以你输入 '@readme' 和 '@hello' 来寻找和选择它们。现在这 3 个 "上下文条目" 会显示在你其余输入的行内。
 
-![Context Items](/img/context-provider-example.png)
+![上下文条目](/img/context-provider-example.png)
 
-## Built-in Context Providers
+## 内置上下文提供者
 
-To use any of the built-in context providers, open `~/.continue/config.json` and add it to the `contextProviders` list.
+为了使用任何内置的上下文提供者，打开 `~/.continue/config.json` 并将它添加到 `contextProviders` 列表中。
 
 ### Code
 
-Type '@code' to reference specific functions or classes from throughout your project.
+输入 '@code' 来引用项目中指定的函数或类。
 
-`````json
+```json
 { "name": "code" }
 ```
 
 ### Git Diff
 
-Type '@diff' to reference all of the changes you've made to your current branch. This is useful if you want to summarize what you've done or ask for a general review of your work before committing.
+输入 '@diff' 来引用你对当前分支所做的所有修改。这是有用的，如果你想总结你所做的，或者在提交之前询问一个你的工作的通用的复查。
 
 ```json
 { "name": "diff" }
 ```
 
-### Terminal
+### 终端
 
-Type '@terminal' to reference the contents of your IDE's terminal.
+输入 '@terminal' 来引用你的 IDE 终端的内容。
 
 ```json
 { "name": "terminal" }
 ```
 
-### Documentation
+### 文档
 
-Type `@docs` to index and retrieve snippets from any documentation site. You can add any site by selecting "Add Docs" in the dropdown, then entering the root URL of the documentation site and a title to remember it by. After the site has been indexed, you can type `@docs`, select your documentation from the dropdown, and Continue will use similarity search to automatically find important sections when answering your question.
+输入 `@docs` 从任何文档站点索引或获取片段。你可以通过选择 "Add Docs" 下拉框添加任何站点，然后输入文档的根 URL 和标题来记住它。在站点索引之后，你可以输入 `@docs` ，从下拉框选择你的文档， Continue 将在回答你的问题时，使用相似搜索来自动查找重要的章节。
 
 ```json
 { "name": "docs" }
 ```
 
-### Open Files
+### 打开文件
 
-Type '@open' to reference the contents of all of your open files. Set `onlyPinned` to `true` to only reference pinned files.
+输入 '@open' 来引用所有你打开的文件的内容。设置 `onlyPinned` 为 `true` 只引用固定的文件。
 
 ```json
 { "name": "open", "params": { "onlyPinned": true } }
 ```
 
-### Codebase Retrieval
+### 代码库检索
 
-Type '@codebase' to automatically retrieve the most relevant snippets from your codebase. Read more about indexing and retrieval [here](../walkthroughs/codebase-embeddings.md).
+输入 '@codebase' 来从你的代码库自动检索最相关的片段。查看更多关于索引和检索 [这里](../walkthroughs/codebase-embeddings.md) 。
 
 ```json
 { "name": "codebase" }
 ```
 
-### Folders
+### 文件夹
 
-Type '@folder' to use the same retrieval mechanism as '@codebase', but only on a single folder.
+输入 '@folder' 来使用与 '@codebase' 相同的检索机制, 但是只有一个文件夹。
 
 ```json
 { "name": "folder" }
 ```
 
-### Exact Search
+### 精准搜索
 
-Type '@search' to reference the results of codebase search, just like the results you would get from VS Code search. This context provider is powered by [ripgrep](https://github.com/BurntSushi/ripgrep).
+输入 '@search' 来引用代码库搜索的结果，就像你从 VS Code 搜索得到的结果。这个上下文提供者由 [ripgrep](https://github.com/BurntSushi/ripgrep) 驱动。
 
 ```json
 { "name": "search" }
 ```
 
-### File Tree
+### 文件树
 
-Type '@tree' to reference the structure of your current workspace. The LLM will be able to see the nested directory structure of your project.
+输入 '@tree' 来引用当前工作区的结构。 LLM 将会看到你的项目的嵌套目录结构。
 
 ```json
 { "name": "tree" }
@@ -90,7 +90,7 @@ Type '@tree' to reference the structure of your current workspace. The LLM will 
 
 ### Google
 
-Type '@google' to reference the results of a Google search. For example, type "@google python tutorial" if you want to search and discuss ways of learning Python.
+输入 '@google' 来引用 Google 搜索的结果。例如，输入 "@google python tutorial" ，如果你想要搜索讨论学习 Python 的方法。
 
 ```json
 {
@@ -99,11 +99,11 @@ Type '@google' to reference the results of a Google search. For example, type "@
 }
 ```
 
-Note: You can get an API key for free at [serper.dev](https://serper.dev).
+注意：你可以从 [serper.dev](https://serper.dev) 免费获得 API key 。
 
 ### GitHub Issues
 
-Type '@issue' to reference the conversation in a GitHub issue. Make sure to include your own [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) to avoid being rate-limited:
+输入 '@issue' 来引用 Github issue 的讨论。确保包含你自己的 [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) 来避免流量限制：
 
 ```json
 {
@@ -122,7 +122,7 @@ Type '@issue' to reference the conversation in a GitHub issue. Make sure to incl
 
 ### Jira Issues
 
-Type '@jira' to reference the conversation in a Jira issue. Make sure to include your own [Atlassian API Token](https://id.atlassian.com/manage-profile/security/api-tokens).
+输入 '@jira' 来引用 Jira issue 的讨论。确保使用你自己的 [Atlassian API Token](https://id.atlassian.com/manage-profile/security/api-tokens) 。
 
 ```json
 {
@@ -135,39 +135,38 @@ Type '@jira' to reference the conversation in a Jira issue. Make sure to include
 }
 ```
 
-#### Jira Datacenter Support
+#### Jira Datacenter 支持
 
-This context provider supports both Jira API version 2 and 3. It will use version 3 by default since
-that's what the cloud version uses, but if you have the datacenter version of Jira, you'll need
-to set the API Version to 2 using the `apiVersion` property.
+这个上下文提供者支持 Jira API 版本 2 和 3 。它默认会使用版本 3 ，因为这是云上版本使用的，但是如果你有 Jira 的 datacenter 版本，你需要设置 API 版本为 2 ，使用  `apiVersion` 属性。
 
-````json
+```json
   "params": {
     "apiVersion": "2",
     ...
   }
+```
 
-#### Issue Query
+#### Issue 查询
 
-By default, the following query will be used to find issues:
+默认情况下，使用下面的查询来查找 issue ：
 
 ```jql
 assignee = currentUser() AND resolution = Unresolved order by updated DESC
-`````
+```
 
-You can override this query by setting the `issueQuery` parameter.
+你可以通过设置 `issueQuery` 参数来覆盖这个查询。
 
-### Code Outline
+### 代码大纲
 
-Type '@outline' to reference the outline of all currently open files. The outline of a files consists of only the function and class definitions in the file. Supported file extensions are '.js', '.mjs', '.go', '.c', '.cc', '.cs', '.cpp', '.el', '.ex', '.elm', '.java', '.ml', '.php', '.ql', '.rb', '.rs', '.ts'
+输入 '@outline' 来引用所有当前打开文件的大纲。文件大纲只包含文件的函数和类的定义。支持的文件扩展名是 '.js', '.mjs', '.go', '.c', '.cc', '.cs', '.cpp', '.el', '.ex', '.elm', '.java', '.ml', '.php', '.ql', '.rb', '.rs', '.ts'
 
 ```json
 { "name": "outline" }
 ```
 
-### Code Highlights
+### 代码高亮
 
-Type '@highlights' to reference the 'highlights' from all currently open files. The highlights are computed using Paul Gauthier's so-called ['repomap'](https://aider.chat/docs/repomap.html) technique in [Aider Chat](https://github.com/paul-gauthier/aider). Supported file extensions are the same as for '@Outline' (behind the scenes, we use the corresponding tree-sitter grammars for language parsing).
+输入 '@highlights' 来引用所有打开文件中的高亮部分。高亮是由在 [Aider Chat](https://github.com/paul-gauthier/aider) 的 Paul Gauthier's 的 ['repomap'](https://aider.chat/docs/repomap.html) 技术来计算的。支持的文件扩展名与 '@outline' 相同 (在幕后，我们使用相关的 tree-sitter 语法器来解析语言) 。
 
 ```json
 { "name": "highlights" }
@@ -175,13 +174,13 @@ Type '@highlights' to reference the 'highlights' from all currently open files. 
 
 ### PostgreSQL
 
-Type `@postgres` to reference the schema of a table, and some sample rows. A dropdown will appear, allowing you to select a specific table, or all tables.
+输入 `@postgres` 来引用表的 schema ，和一些示例行。一个下拉框会出现，允许你选择指定的表或所有表。
 
-The only required settings are those for creating the database connection: `host`, `port`, `user`, `password`, and `database`.
+只需要创建数据库连接的配置： `host`, `port`, `user`, `password` 和 `database` 。
 
-By default, the `schema` filter is set to `public`, and the `sampleRows` is set to 3. You may unset the schema if you want to include tables from all schemas.
+默认情况下， `schema` 过滤器设置为 `public` ， `sampleRows` 设置为 3 。你可以取消设置 schema ，如果你希望包含所有 schema 的表。
 
-[Here is a short demo.](https://github.com/continuedev/continue/pull/859)
+[这是一个简单的 demo](https://github.com/continuedev/continue/pull/859) 。
 
 ```json
 {
@@ -198,9 +197,9 @@ By default, the `schema` filter is set to `public`, and the `sampleRows` is set 
 }
 ```
 
-### Database Tables
+### 数据库表
 
-Type `@database` to reference table schemas you can use the drop-down or start typeing table names based off of your configuration. Configuration supports multiple databases, allowing you to specify various connection details for PostgreSQL, MySQL, SQLite. Each connection should include a unique name, the connection_type (e.g., postgres, sqlite), and the necessary connection parameters specific to each database type.
+输入 `@database` 来引用表 schema ，你可以基于你的配置使用下拉或者输入表名。配置支持多个数据库，允许你为 PostgresSQL MySQL SQLite 指定不同的连接详情。每个连接都应该有唯一的名字，连接类型（比如， postgres, sqlite ），以及每个数据库类型必须的连接参数。
 
 ```json
 {
@@ -230,9 +229,9 @@ Type `@database` to reference table schemas you can use the drop-down or start t
 }
 ```
 
-### Requesting Context Providers
+### 请求上下文提供者
 
-Not seeing what you want? Create an issue [here](https://github.com/continuedev/continue/issues/new?assignees=TyDunn&labels=enhancement&projects=&template=feature-request-%F0%9F%92%AA.md&title=) to request a new ContextProvider.
+没有看到你想要的？创建一个 issue [这里](https://github.com/continuedev/continue/issues/new?assignees=TyDunn&labels=enhancement&projects=&template=feature-request-%F0%9F%92%AA.md&title=) 来请求一个新的 ContextProvider 。
 
 ## Building Your Own Context Provider
 

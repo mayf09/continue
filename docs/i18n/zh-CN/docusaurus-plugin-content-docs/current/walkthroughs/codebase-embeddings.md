@@ -1,41 +1,41 @@
 ---
-title: Codebase Retrieval
-description: Talk to your codebase
+title: 代码库检索
+description: 与你的代码库交互
 keywords: [talk, embeddings, codebase, experimental]
 ---
 
-# Codebase retrieval
+# 代码库检索
 
-Continue indexes your codebase so that it can later automatically pull in the most relevant context from throughout your workspace. This is done via a combination of embeddings-based retrieval and keyword search. By default, all embeddings are calculated locally with `all-MiniLM-L6-v2` and stored locally in `~/.continue/index`.
+Continue 对你的代码库做索引，以便之后从任何你的工作区自动查找最相关的上下文。这是由基于嵌入的检索和关键字搜索结合完成的。默认情况下，所以嵌入是通过 `all-MiniLM-L6-v2` 本地计算的，并保存在本地的 `~/.continue/index` 。
 
-Currently, the codebase retrieval feature is available as the "codebase" and "folder" context providers. You can use them by typing `@codebase` or `@folder` in the input box, and then asking a question. The contents of the input box will be compared with the embeddings from the rest of the codebase (or folder) to determine relevant files.
+目前，代码库检索功能在 "codebase" 和 "folder" 上下文提供者中可用。你可以在输入框中输入 `@codebase` 或 `@folder` 来使用它们，然后提出问题。输入框中的内容将与其余代码库（或文件夹）的嵌入进行比较，来决定相关的文件。
 
-Here are some common use cases where it can be useful:
+这是一些常见的有用的使用情况：
 
-- Asking high-level questions about your codebase
-  - "How do I add a new endpoint to the server?"
-  - "Do we use VS Code's CodeLens feature anywhere?"
-  - "Is there any code written already to convert HTML to markdown?"
-- Generate code using existing samples as reference
-  - "Generate a new React component with a date picker, using the same patterns as existing components"
-  - "Write a draft of a CLI application for this project using Python's argparse"
-  - "Implement the `foo` method in the `bar` class, following the patterns seen in other subclasses of `baz`.
-- Use `@folder` to ask questions about a specific folder, increasing the likelihood of relevant results
-  - "What is the main purpose of this folder?"
-  - "How do we use VS Code's CodeLens API?"
-  - Or any of the above examples, but with `@folder` instead of `@codebase`
+- 提问关于你的代码库的高层次问题
+  - "我如何在 server 中添加新的 endpoint ？"
+  - "我们有在任何地方使用 VS Code 的 CodeLens 功能吗？"
+  - "这里是否已经有代码可以将 HTML 转换为 markdown ？"
+- 使用已存在的样例作为引用来生成代码
+  - "使用日期选择器生成一个新的 React 组件，使用现存组件相同的模式"
+  - "使用 Python 的 argparse 编写这个项目 CLI 应用草稿"
+  - "在 `bar` 类中实现 `foo` 方法，根据另一个子类 `baz` 的模式"
+- 使用 `@folder` 提问关于指定文件夹的问题，增加相关结果的关联性
+  - "这个文件夹的主要目的是什么？"
+  - "我们如何使用 VS Code 的 CodeLens API ？"
+  - 或者任何上面的示例，但是使用 `@folder` 替换 `@codebase`
 
-Here are use cases where it is not useful:
+这是一些无用的使用情况：
 
-- When you need the LLM to see _literally every_ file in your codebase
-  - "Find everywhere where the `foo` function is called"
-  - "Review our codebase and find any spelling mistakes"
-- Refactoring
-  - "Add a new parameter to the `bar` function and update usages"
+- 当你需要 LLM 看到你的代码库中 _字面意义上每个_ 文件
+  - "找到所有 `foo` 函数调用的地方"
+  - "检查我们的代码库，并查找任何拼写错误"
+- 重构
+  - "添加一个新的参数到 `bar` 函数并更新用法"
 
-## Configuration
+## 配置
 
-There are a few options that let you configure the behavior of the codebase context provider. These can be set in `config.json`, and are the same for the codebase and folder context providers:
+有一些配置可以让你配置 codebase 上下文提供者的行为。它们可以在 `config.json` 中设置，对于 codebase 和 folder 上下文提供者是相同的：
 
 ```json title="~/.continue/config.json"
 {
@@ -54,23 +54,23 @@ There are a few options that let you configure the behavior of the codebase cont
 
 ### `nRetrieve`
 
-Number of results to initially retrieve from vector database (default: 25)
+从向量数据库中最初检索的结果数量（默认： 25）
 
 ### `nFinal`
 
-Final number of results to use after re-ranking (default: 5)
+重新排序之后要使用的结果的最终数量（默认：5）
 
 ### `useReranking`
 
-Whether to use re-ranking, which will allow initial selection of `nRetrieve` results, then will use an LLM to select the top `nFinal` results (default: true)
+是否使用重新排序，它允许 `nRetrieve` 最初选择结果，然后使用 LLM 选择最上 `nFinal` 结果 (默认： true)
 
-## Embeddings providers
+## 嵌入提供者
 
-We also support other methods of generating embeddings, which can be configured with the `"embeddingsProvider"` property in `config.json`. We currently have built-in support for the following providers:
+我们也支持其他方法生成嵌入，可以使用 `"embeddingsProvider"` 属性在 `config.json` 中配置。我们目前有下面这些提供者的内置支持：
 
 ### Transformers.js
 
-[Transformers.js](https://huggingface.co/docs/transformers.js/index) is a JavaScript port of the popular [Transformers](https://huggingface.co/transformers/) library. It allows embeddings to be calculated locally in the browser (or in this case inside of the sidebar of your IDE). The model used is `all-MiniLM-L6-v2`, which is shipped alongside the Continue extension and generates embeddings of size 384.
+[Transformers.js](https://huggingface.co/docs/transformers.js/index) 是流行的 [Transformers](https://huggingface.co/transformers/) 库的一个 JavaScript 移植。它允许嵌入在本地浏览器中计算（或者这种情况下，在你的 IDE 的侧边栏中）。模型使用的是 `all-MiniLM-L6-v2` ，跟随 Continue 扩展，生成 384 大小的嵌入。
 
 ```json title="~/.continue/config.json"
 {
@@ -82,64 +82,64 @@ We also support other methods of generating embeddings, which can be configured 
 
 ### Ollama
 
-[Ollama](https://ollama.ai) is the easiest way to get up and running with open-source language models. It provides an entirely local REST API for working with LLMs, including generating embeddings. The embeddings generated are slightly larger, with a size of 4096 for `codellama:7b`.
+[Ollama](https://ollama.ai) 是启动和运行开源语言模型的最简单的方式。它提供一个使用 LLM 的完全本地 REST API ，包括生成嵌入。嵌入生成比较大，对于 `codellama:7b` ，大小是 4096 。
 
 ```json title="~/.continue/config.json"
 {
   "embeddingsProvider": {
     "provider": "ollama",
     "model": "codellama:7b",
-    "apiBase": "http://localhost:11434" // optional, defaults to http://localhost:11434
+    "apiBase": "http://localhost:11434" // 可选，默认是 http://localhost:11434
   }
 }
 ```
 
 ### OpenAI
 
-OpenAI's [embeddings](https://platform.openai.com/docs/guides/embeddings) are high dimensional embeddings that give great performance on both text and code.
+OpenAI 的 [嵌入](https://platform.openai.com/docs/guides/embeddings) 是高维嵌入，对于文本和代码都有良好的性能。
 
-Configuration for text-embedding-3-small Model. This is default. 
-The text-embedding-3-small model offers an outstanding balance between performance and efficiency, suitable for a versatile range of applications.
+text-embedding-3-small 模型的配置。这是默认的。
+text-embedding-3-small 模型提供了在性能和效率之间优秀的平衡，适用于多功能的应用。
 
 ```json title="~/.continue/config.json"
 {
   "embeddingsProvider": {
     "provider": "openai",
     "model": "text-embedding-3-small",
-    "apiBase": "<your custom OpenAI-compatible endpoint>" // optional, defaults to OpenAI's API
+    "apiBase": "<your custom OpenAI-compatible endpoint>" // 可选，默认是 OpenAI API
   }
 }
 ```
 
-Configuration for text-embedding-3-large Model
-For those requiring the highest level of embedding detail and precision, the text-embedding-3-large model is the better choice.
+text-embedding-3-large 模型的配置。
+对于那些需要最高级的嵌入细节和精度， text-embedding-3-large 模型是更好的选择。
 
 ```json title="~/.continue/config.json"
 {
   "embeddingsProvider": {
     "provider": "openai",
     "model": "text-embedding-3-large",
-    "apiBase": "<your custom OpenAI-compatible endpoint>" // optional, defaults to OpenAI's API
+    "apiBase": "<your custom OpenAI-compatible endpoint>" // 可选，默认是 OpenAI API
   }
 }
 ```
 
-Legacy Model Configuration
-For certain scenarios, you may still find the text-embedding-ada-002 model relevant. Below is the configuration example:
+遗留的模型配置。
+对于指定场景，你可能仍然发现 text-embedding-ada-002 模型相关。下面是配置示例：
 
 ```json title="~/.continue/config.json"
 {
   "embeddingsProvider": {
     "provider": "openai",
     "model": "text-embedding-ada-002",
-    "apiBase": "<your custom OpenAI-compatible endpoint>" // optional, defaults to OpenAI's API
+    "apiBase": "<your custom OpenAI-compatible endpoint>" // 可选，默认是 OpenAI API
   }
 }
 ```
 
-### Writing a custom `EmbeddingsProvider`
+### 编写一个定制的 `EmbeddingsProvider`
 
-If you have your own API capable of generating embeddings, Continue makes it easy to write a custom `EmbeddingsProvider`. All you have to do is write a function that converts strings to arrays of numbers, and add this to your config in `config.ts`. Here's an example:
+如果你有自己的生成嵌入的 API 能力， Continue 可以简单地编写一个定制 `EmbeddingsProvider` 。你需要做的就是，编写一个函数，将字符串转换为数字列表，并将它加入到你的 `config.ts` 配置中。这是一个示例：
 
 ```ts title="~/.continue/config.ts"
 export function modifyConfig(config: Config): Config {
@@ -162,10 +162,10 @@ export function modifyConfig(config: Config): Config {
 }
 ```
 
-## Customizing which files are indexed
+## 定制哪个文件进行索引
 
-Continue respects `.gitignore` files in order to determine which files should not be indexed. If you'd like to exclude additional files, you can add them to a `.continueignore` file, which follows the exact same rules as `.gitignore`.
+Continue 关注 `.gitignore` 文件，为了决定哪个文件不被索引。如果你想要排除更多的文件，你可以把它们加入到 `.continueignore` 文件，遵守 `.gitignore` 完全相同的规则。
 
-If you want to see exactly what files Continue has indexed, the metadata is stored in `~/.continue/index/index.sqlite`. You can use a tool like [DB Browser for SQLite](https://sqlitebrowser.org/) to view the `tags_catalog` table within this file.
+如果你想准确地查看哪个文件被 Continue 索引，元数据存储在 `~/.continue/index/index.sqlite` 。你可以使用工具，比如 [DB Browser for SQLite](https://sqlitebrowser.org/) 来查看这个文件的 `tags_catalog` 表。
 
-If you need to force a refresh of the index, reload the VS Code window with `cmd/ctrl + shift + p` + "Reload Window".
+如果你希望强制更新索引，重新加载 VS Code 窗口，使用 `cmd/ctrl + shift + p` + "重新加载窗口" 。

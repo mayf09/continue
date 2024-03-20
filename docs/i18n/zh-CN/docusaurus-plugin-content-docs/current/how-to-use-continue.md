@@ -1,151 +1,151 @@
 ---
-title: 🧑‍🎓 How to use Continue
+title: 🧑‍🎓 如何使用 Continue
 description: Using LLMs as you code with Continue
 keywords: [how to, edit, refactor, boilerplate, context]
 ---
 
-# 🧑‍🎓 How to use Continue
+# 🧑‍🎓 如何使用 Continue
 
 :::info
-**TL;DR: Using LLMs as you code can accelerate you if you leverage them in the right situations. However, they can also cause you to get lost and confused if you trust them when you should not. This page outlines when and where we think you should and should not use Continue.**
+**TL;DR: 当你编码时使用 LLM 可以提速，如何你在正确的场景下使用。不过，它也可能让你迷茫或疑惑，如果你在不应该相信它的时候相信它。这个页面显示了，我们认为什么时候和什么地方你应该或不应该使用 Continue 。**
 :::
 
-## Introduction
+## 简介
 
-Continue will only be as helpful as the LLM you are using to power the edits and explanations. LLMs sometimes hallucinate, so it might make up a library or invent some syntax that does not exist. If something suggested is not working or seems odd to you, it’s best to double check with a Google search to make sure you are not falling into a rabbit hole.
+Continue 只有在你使用的 LLM 增强编辑和解释时有用。 LLMs 有时候会出现幻觉，所以它可能会编造一个库或者捏造一些不存在的语法。如果建议的一些东西不能工作或者看起来奇怪，最后使用 Google 搜索复查一下，以确保你不会掉进无底洞。
 
-As you use Continue more, you will learn when to trust it. A great way to get started is to just play with it and start to get a sense of what works and what does not. Continue always ask you to accept / reject any changes it suggests, so you can always undo if something goes wrong.
+随着你更多地使用 Continue ，你会直到什么时候应该相信它。一个好的开始使用它的方式是，试着使用它，开始找到什么能工作什么不能工作的感觉。 Continue 总是询问你接受/拒绝它建议的任何更改，所以你总可以取消，如果有什么东西出错。
 
-If you are trying to use it for a new task and don’t have a sense of how much Continue can help you complete it, it can often be helpful to start like this:
+如果你试着对一个新任务使用它，并且没有关于 Continue 可以帮助你完成它的感觉，像这样开始通常是有用的：
 
-'Highlight' refers to the act of selecting a text range in a file and pressing 'cmd+shift+M' (Macos) or 'ctrl+shift+M' (Windows) to include it in the Continue chat message.
+'高亮' 是选择文件中的文本范围操作，点击 'cmd+shift+M' (Macos) 或 'ctrl+shift+M' (Windows) 包含它到 Continue 聊天消息中。
 
-1. Highlight the code section(s) that you don’t understand and type "tell me how this code works" in the input box
-2. If the explanation seems reasonable, then, while still highlighting the code section(s), type "how would you change this code to [INSERT TASK]?"
-3. If this explanation is also pretty good, then, while still highlighting the code section(s), type `/edit [INSERT TASK]`. If you like the suggested diff, use `cmd+shift+enter` to accept the changes.
-4. If it does not work on first attempt, use `cmd+shift+backspace` to reject the changes and try again—often it will make a different suggestion each time
-5. If it is not giving you what you want after another attempt, reject and try again with more specific / clear instructions, articulating exactly what you want it to do and not to do
-6. If this still does not work, then you likely need to break down the task into smaller sub-tasks and ask the LLM to do each of those one at a time or just do it yourself manually
+1. 高亮你不理解的代码片段，在输入框中输入“告诉我这段代码如何工作”
+2. 如何解释看起来是合理的，然后，当你仍然高亮那个代码片段，输入“你会如何修改这段代码到 [INSERT TASK]？”
+3. 如果解释仍然不错，然后，当你仍然高亮那个代码片段，输入 `/edit [INSERT TASK]` 。如果你喜欢建议的 diff ，使用 `cmd+shift+enter` 来接受变更。
+4. 如果它第一次尝试不能工作，使用 `cmd+shift+backspace` 来拒绝变更并重试 - 通常每次它会给出不同的建议
+5. 如果它在另一次尝试之后没有给出你想要的，拒绝并试着使用更确定/清晰的指令，明确表达你想要它做什么和不想做什么
+6. 如果这个仍然不能工作，那么你需要将任务拆分成更小的子任务，询问 LLM 每次只做一个，或者自己手动完成
 
-Remember: You are responsible for all code that you ship, whether it was written by you or by an LLM that you directed. This means it is crucial that you review what the LLM writes. To make this easier, we provide natural language descriptions of the actions the LLM took in the Continue GUI.
+记住: 你需要对你输出的代码负责，无论它是你编写的还是你指导 LLM 编写的。你需要对你输出的代码负责，无论它是你编写的还是你指导 LLM 编写的。这意味着你复查 LLM 编写是关键的。为了使这个简单一些，我们提供了 LLM 在 Continue GUI 中操作的自然语言描述。
 
-## When to use Continue
+## 什么时候使用 Continue
 
-Here are tasks that Continue excels at helping you complete:
+这里是一些 Continue 擅长帮你完成的任务：
 
-### Laborious edits
+### 费力的编辑
 
-Continue works well in situations where find and replace does not work (i.e. “/edit change all of these to be like that”)
+Continue 在查找和替换不能工作的情形下工作很好(也就是 “/edit 修改所有像这个的东西”)
 
-Examples
+示例
 
-- "/edit Use 'Union' instead of a vertical bar here"
-- “/edit Make this use more descriptive variable names”
+- "/edit 使用 'Union' 替换这里的竖线"
+- "/edit 让这个使用更好理解的变量名"
 
-### Writing files from scratch
+### 从零开始编写文件
 
-Continue can help you get started building React components, Python scripts, Shell scripts, Makefiles, unit tests, etc.
+Continue 可以帮助你开始构建 React 组件， Python 脚本， Shell 脚本， Makefile ，单元测试等。
 
-Examples
+示例
 
-- “/edit write a python script to get posthog events"
-- “/edit add a react component for syntax highlighted code"
+- “/edit 编写一个 python 脚本来获取 posthog 事件"
+- "/edit 添加一个 react 组件来语法高亮代码"
 
-### Creating boilerplate from scratch
+### 从零开始创建样板文件
 
-Continue can go even further. For example, it can help build the scaffolding for a Python package, which includes a typer cli app to sort the arguments and print them back out.
+Continue 甚至可以做更多。例如，它可以帮助构建 Python 包的脚手架，包含 typer 命令行应用，对参数进行排序并将它们打印出来。
 
-Examples
+示例
 
-- “/edit use this schema to write me a SQL query that gets recently churned users”
-- “/edit create a shell script to back up my home dir to /tmp/"
+- “/edit 使用这个 schema 编写一个 SQL query 获取最近流失的用户”
+- “/edit 创建一个 shell 脚本来备份我的家目录到 /tmp/"
 
-### Fix highlighted code
+### 修复高亮代码
 
-After selecting the code section(s), try to refactor it with Continue (e.g “/edit change the function to work like this” or “/edit do this everywhere”)
+在选择代码片段之后，试着使用 Continue 重构它 (也就是 "/edit 修改函数像这样工作" or "/edit 在任何地方做这个")
 
-Examples
+示例
 
-- “/edit migrate this digital ocean terraform file into one that works for GCP”
-- “/edit rewrite this function to be async”
+- “/edit 迁移这个 digital ocean terraform 文件到 GCP 可以工作的文件”
+- “/edit 重写这个函数到异步的”
 
-### Ask about highlighted code or an entire file
+### 询问关于高亮代码或整个文件
 
-If you don't understand how some code works, highlight it and ask "how does this code work?"
+如果你不明白一些代码是如何工作的，高亮它并询问 "这些代码是如何工作的？"
 
-Examples
+示例
 
-- “where in the page should I be making this request to the backend?”
-- “how can I communicate between these iframes?”
+- "在页面中哪个地方，让这个请求到后端？"
+- “我如何在这些 iframe 中通信？”
 
-### Ask about errors
+### 询问关于错误
 
-Continue can also help explain errors / exceptions and offer possible solutions. When you come across an error / exception in your terminal, press `cmd+shift+r` (MacOS) / `ctrl+shift+r` (Windows). This will throw the stack trace into Continue and ask for it to explain the issue to you.
+Continue 也可以帮助解释 errors / exceptions 并提供可能的解决方案。当你在终端得到一个 error / exception ，点击 `cmd+shift+r` (MacOS) / `ctrl+shift+r` (Windows)。这将把 stack trace 放入 Continue ，询问它给你解释那个 issue 。
 
-### Figure out what shell command to run
+### 找出运行哪个 shell 命令
 
-Instead of switching windows and getting distracted, you can ask things like "How do I find running process on port 8000?"
+不用切换窗口，分散注意力，你可以询问东西，比如 "我如何找出端口 8000 上运行的进程？"
 
-Examples
+示例
 
-- "what is the load_dotenv library name?"
-- "how do I find running process on port 8000?"
+- "什么是 load_dotenv 库的名字？"
+- "我如何找出端口 8000 上运行的进程？"
 
-### Ask single-turn open-ended questions
+### 询问单轮开放式问题
 
-Instead of leaving your IDE, you can ask open-ended questions that you don't expect to turn into multi-turn conversations.
+不用离开你的 IDE ，你可以询问开放式问题，你不希望转换为多论对话。
 
-Examples
+示例
 
-- “how can I set up a Prisma schema that cascades deletes?”
-- "what is the difference between dense and sparse embeddings?"
+- "我如何设置 Prisma schema 可以级联删除？"
+- "密集嵌入和稀疏嵌入的不同是什么？"
 
-### Editing small existing files
+### 编辑小的已存在的文件
 
-You can highlight an entire file and ask Continue to improve it as long as the file is not too large.
+你可以高亮整个文件，询问 Continue 来优化它，如果文件不是很大。
 
-Examples
+示例
 
-- “/edit here is a connector for postgres, now write one for kafka”
-- "/edit Rewrite this API call to grab all pages"
+- "/edit 这是一个 postgres 的连接器，现在编写一个 kafka 的"
+- "/edit 重写这个 API 调用来抓取所有页面"
 
-### Using context from multiple other files
+### 使用来自多个其他文件的上下文
 
-Similar to how you would make changes manually, focus on one file at a time. But if there is key information in other files, highlight those sections of code too to be used as additional context
+与你手动修改一样，一次专注于一个文件。但是如果其他文件中有关键信息，也高亮那些代码片段作为额外的上下文
 
-### Tasks with a few steps
+### 一些小步骤的任务
 
-There are many more tasks that Continue can help you complete. Typically, these will be tasks that don't involve too many steps to complete.
+有更多的任务 Continue 可以帮助你完成。通常，它们是那些不设置太多步骤完成的任务。
 
-Examples
+示例
 
-- “/edit make an IAM policy that creates a user with read-only access to S3”
-- “/edit change this plot into a bar chart in this dashboard component”
+- "/edit 编写一个 IAM 策略，创建一个用户有 S3 的只读权限"
+- "/edit 修改这个图表为柱状图，在这个 dashboard 组件中"
 
-## When to not use Continue
+## 什么时候不使用 Continue
 
-Here are tasks that Continue is **not** helpful with today:
+这些是 Continue 今天 **不能** 帮助的任务：
 
-### Deep debugging
+### 深度调试
 
-If you are 20 minutes into debugging a complicated issue across many files, then Continue won’t be able to help you connect the dots yet. That said, Continue can provide ideas of what you might do at different points if you share what you have figured out along the way and ask for ideas of what to try.
+如果你花 20 分钟通过很多文件调试一个复杂的问题，那么 Continue 不能帮助你连接这些点。也就是说， Continue 可以在不同的点提供想法，如果你分享你所做的方法，并询问可以尝试的想法。
 
-### Multi-file edits in parallel
+### 多个文件的并行编辑
 
-At the moment, Continue can only edit one file at a time. If you figure out which files need to change, you can direct Continue to help you change them one at a time though.
+在这个时刻， Continue 每次只能编辑一个文件。如果你找出哪个文件需要修改，你可以让 Continue 帮助你每次修改一个。
 
-### Using context of the entire file
+### 使用整个文件的上下文
 
-If files get too large, it can be difficult for Continue to fit them into the limited LLM context windows. Try to highlight the section of code that include the relevant context. It's rare that you need the entire file.
+如果文件太大，对与 Continue ，将它们放入到有限的 LLM 上下文窗口是很难的。试着高亮包含相关上下文的代码片段。你很少需要整个文件。
 
-### Editing large files
+### 编辑大型文件
 
-Similarly, if you try to edit too many lines at once, you might run into context window limits. It also will likely be very slow to apply the suggestions.
+同样地, 如果你试着一次编辑太多行，你可能遇到上下文窗口限制。它可能会很慢来接受建议。
 
-### Highlighting really long lines
+### 高亮很长的行
 
-If you highlight very long lines (e.g. a complex SVG), you might also run into issues like those above.
+如果你高亮非常长的行（例如，一个复杂的 SVG），你也可能碰到上面的问题。
 
-### Tasks with many steps
+### 很多步骤的任务
 
-There are other tasks that Continue won't be able to take on entirely at once. However, typically, if you figure out how to break the task into sub-tasks, you can get help from Continue with those.
+还有一些任务 Continue 不能一次完整的接受。不过，通常，如果你找出如何将任务拆分成子任务，你可以从 Continue 获得关于它们的帮助。

@@ -1,29 +1,29 @@
 ---
-title: 🦔 Telemetry
-description: Continue collects anonymous usage information
+title: 🦔 遥测
+description: Continue 收集匿名使用信息
 keywords: [telemetry, anonymous, usage info, opt out]
 ---
 
-# 🦔 Telemetry
+# 🦔 遥测
 
-## Overview
+## 概述
 
-Continue collects and reports **anonymous** usage information. This data is essential to understanding how we should improve the product. You can opt out of it at any time. We use [Posthog](https://posthog.com/), an open source platform for product analytics, to collect and store the data. You can review the code [here](https://github.com/continuedev/continue/blob/main/gui/src/hooks/CustomPostHogProvider.tsx).
+Continue 收集并报告 **匿名** 使用信息。这个数据是至关重要的，对于理解我们如何提高产品。你可以在任何时候选择退出它。我们使用 [Posthog](https://posthog.com/) ，一个开源的产品分析平台，来收集和保存数据。你可以查看代码 [这里](https://github.com/continuedev/continue/blob/main/gui/src/hooks/CustomPostHogProvider.tsx) 。
 
-## What we track
+## 我们跟踪什么
 
-We track
+我们跟踪
 
-- whether you accept or reject suggestions (not the code itself)
-- the name of slash commands that are run
-- the name of your OS and IDE
-- the name of the default model you configured
+- 你是否接受或拒绝建议（不是代码本身）
+- 运行的斜杠命令的名字
+- 你的 OS 和 IDE 的名字
+- 你配置的默认模型的名字
 
-All data is anonymous and cleaned of PII before being sent to PostHog.
+所有数据都是匿名和个人信息清除的，在发送到 PostHog 之前。
 
-## How to opt out
+## 如何退出
 
-The `~/.continue` directory contains a `config.json` file that looks like this:
+`~/.continue` 目录包含一个 `config.json` 文件看起来像这样：
 
 ```json title="~/.continue/config.json"
 {
@@ -32,4 +32,4 @@ The `~/.continue` directory contains a `config.json` file that looks like this:
 }
 ```
 
-You can turn off anonymous telemetry by changing the value of `allowAnonymousTelemetry` to `false`. Alternatively, you can uncheck the "Continue: Telemetry Enabled" box in VS Code settings.
+你可以关闭匿名遥测，通过修改 `allowAnonymousTelemetry` 的值为 `false` 。或者，你可以在 VS Code 设置中，取消选中 "Continue: Telemetry Enabled" 框。

@@ -1,33 +1,33 @@
 ---
-title: ⚡️ Quickstart
+title: ⚡️ 快速开始
 description: Getting started with Continue
 keywords: [quickstart, start, install, vscode, jetbrains]
 ---
 
-# ⚡️ Quickstart
+# ⚡️ 快速开始
 
 ## VS Code
 
-1. Click `Install` on the **[Continue extension in the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Continue.continue)**
+1. 点击 **[Visual Studio 市场中 Continue 扩展](https://marketplace.visualstudio.com/items?itemName=Continue.continue)** 的 `Install` 按钮
 
-2. This will open the Continue extension page in VS Code, where you will need to click `Install` again
+2. 这将会打开 VS Code 的 Continue 扩展页面，你再次点击 `Install`
 
-3. Once you do this, you will see the Continue logo show up on the left side bar. If you click it, the Continue extension will open up:
+3. 一旦你这样做了，你会看到 Continue 图标出现在你的左侧边栏。点击它， Continue 扩展就会打开：
 
-> We strongly recommend moving Continue to VS Code's right sidebar. This helps keep the file explorer open while using Continue, and the sidebar can be toggled with a simple keyboard shortcut. ![move-to-right-sidebar](/img/move-to-right-sidebar.png)
+> 我们强烈推荐将 Continue 移动到 VS Code 的右侧边栏。这将帮助你在使用 Continue 时保持文件浏览器打开，并且侧边栏可以使用简单的快捷键打开！
 
-4. If you have any problems, see the [troubleshooting guide](./troubleshooting.md) or ask for help in [our Discord](https://discord.gg/NWtdYexhMs).
+4. 如果你有任何问题，查看 [解决问题指导](./troubleshooting.md) 或者在 [我们的 Discord](https://discord.gg/NWtdYexhMs) 寻求帮助。
 
 ## JetBrains
 
-1. Open your JetBrains IDE and open settings using `cmd/ctrl + shift + ,`.
+1. 打开你的 JetBrains IDE 并使用 `cmd/ctrl + shift + ,` 打开设置。
 
-2. Select **Plugins** on the sidebar.
+2. 在侧边栏中选择 **插件** 。
 
-3. Search for "Continue" in the marketplace and click `Install`. Once installed you'll see Continue show up on the right toolbar:
+3. 在市场中查找 "Continue" 并点击 `安装` 。 安装好之后，你会在右侧工具栏看到 Continue ：
 
 ![jetbrains-quickstart](/img/jetbrains-quickstart.png)
 
-4. If you have any problems, see the [troubleshooting guide](./troubleshooting.md) or ask for help in [our Discord](https://discord.gg/NWtdYexhMs).
+4. 如果你有任何问题，查看 [解决问题指导](./troubleshooting.md) 或者在 [我们的 Discord](https://discord.gg/NWtdYexhMs) 寻求帮助。
 
-> Alternatively, you can install from disk after downloading from the [JetBrains Extension Marketplace](https://plugins.jetbrains.com/plugin/22707-continue-extension).
+> 另外, 你可以从 [JetBrains 扩展市场](https://plugins.jetbrains.com/plugin/22707-continue-extension) 下载，然后从本地磁盘进行安装。
