@@ -1,6 +1,6 @@
 # Mistral API
 
-The [Mistral](https://mistral.ai) API provides hosted access to their models, including Mistral-7b, Mixtral, and the very capable mistral-medium. After you obtain your API key [here](https://docs.mistral.ai/), Continue can be configured as shown here:
+[Mistral](https://mistral.ai) API 提供托管访问他们的模型，包括 Mistral-7b, Mixtral, 以及能力非常强的 mistral-medium 。在你获取你的 API key [这里](https://docs.mistral.ai/) 之后， Continue 可以配置像这样：
 
 ```json title="~/.continue/config.json"
 {
@@ -15,4 +15,4 @@ The [Mistral](https://mistral.ai) API provides hosted access to their models, in
 }
 ```
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/Mistral.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/Mistral.ts)

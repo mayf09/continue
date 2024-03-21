@@ -1,6 +1,6 @@
-# HuggingFace Inference Endpoints
+# HuggingFace 推理端点
 
-Hugging Face Inference Endpoints are an easy way to setup instances of open-source language models on any cloud. Sign up for an account and add billing [here](https://huggingface.co/settings/billing), access the Inference Endpoints [here](https://ui.endpoints.huggingface.co), click on “New endpoint”, and fill out the form (e.g. select a model like [WizardCoder-Python-34B-V1.0](https://huggingface.co/WizardLM/WizardCoder-Python-34B-V1.0)), and then deploy your model by clicking “Create Endpoint”. Change `~/.continue/config.json` to look like this:
+Hugging Face 推理端点是一种在任何云上设置开源语言模型的简单方式。注册一个帐号，添加账单 [这里](https://huggingface.co/settings/billing) ，访问推理端点 [这里](https://ui.endpoints.huggingface.co) ，点击 "New endpoint" ， 填写表单（例如，选择一个模型，比如 [WizardCoder-Python-34B-V1.0](https://huggingface.co/WizardLM/WizardCoder-Python-34B-V1.0)），然后通过点击 "Create Endpoint" 部署你的模型。修改 `~/.continue/config.json` 看起来像这样：
 
 ```json title="~/.continue/config.json"
 {
@@ -16,4 +16,4 @@ Hugging Face Inference Endpoints are an easy way to setup instances of open-sour
 }
 ```
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/HuggingFaceInferenceAPI.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/HuggingFaceInferenceAPI.ts)

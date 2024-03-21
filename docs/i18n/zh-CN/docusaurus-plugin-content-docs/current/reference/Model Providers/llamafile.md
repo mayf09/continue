@@ -1,6 +1,6 @@
 # Llamafile
 
-A [llamafile](https://github.com/Mozilla-Ocho/llamafile#readme) is a self-contained binary that can run an open-source LLM. You can configure this provider in your config.json as follows:
+[llamafile](https://github.com/Mozilla-Ocho/llamafile#readme) 是一个自包含的二进制文件，可以运行开源 LLM 。你可以在 `config.json` 中配置这个提供者如下：
 
 ```json title="~/.continue/config.json"
 {
@@ -14,6 +14,6 @@ A [llamafile](https://github.com/Mozilla-Ocho/llamafile#readme) is a self-contai
 }
 ```
 
-Optionally, you can set the `llamafile_command` property, which will be run to start the llamafile if it isn't already running on port 8080. Be sure to use an absolute path to the llamafile binary. For example: `/Users/yourusername/mistral-7b-instruct-v0.1-Q4_K_M-server.llamafile`.
+可选的，你可以设置 `llamafile_command` 属性，它将运行启动 llamafile ，如果它没有运行在 8080 端口。确认使用 llamafile 二进制文件的绝对路径。例如： `/Users/yourusername/mistral-7b-instruct-v0.1-Q4_K_M-server.llamafile` 。
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/Llamafile.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/Llamafile.ts)

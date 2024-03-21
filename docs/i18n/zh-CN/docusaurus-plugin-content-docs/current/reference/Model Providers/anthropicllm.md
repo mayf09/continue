@@ -1,6 +1,6 @@
 # AnthropicLLM
 
-To setup Anthropic, add the following to your `config.json` file:
+为了设置 Anthropic ，将以下添加到你的 `config.json` 文件中：
 
 ```json title="~/.continue/config.json"
 {
@@ -15,6 +15,6 @@ To setup Anthropic, add the following to your `config.json` file:
 }
 ```
 
-Claude 2 is not yet publicly released. You can request early access [here](https://www.anthropic.com/earlyaccess).
+Claude 2 不是公开发布的。你可以请求提前访问 [这里](https://www.anthropic.com/earlyaccess) 。
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/Anthropic.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/Anthropic.ts)

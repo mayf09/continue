@@ -1,6 +1,6 @@
 # Ollama
 
-[Ollama](https://ollama.ai/) is an application for Mac and Linux that makes it easy to locally run open-source models, including Llama-2. Download the app from the website, and it will walk you through setup in a couple of minutes. You can also read more in their [README](https://github.com/jmorganca/ollama). Continue can then be configured to use the `Ollama` LLM class:
+[Ollama](https://ollama.ai/) 是一个 Mac 和 Linux 的应用，简单地在本地运行开源模型，包括 Llama-2 。从网站上下载 app ，它会让你在几分钟内设置。你也可以查看更多，在他们的 [README](https://github.com/jmorganca/ollama) 。 Continue 然后可以配置使用 `Ollama` LLM 类：
 
 ```json title="~/.continue/config.json"
 {
@@ -15,19 +15,20 @@
 }
 ```
 
-## Completion Options
+## 补全选项
 
-In addition to the model type, you can also configure some of the parameters that Ollama uses to run the model.
+除了模型类型，你也可以配置一些 Ollama 用来来运行模型的参数。
 
-- temperature: options.temperature - This is a parameter that controls the randomness of the generated text. Higher values result in more creative but potentially less coherent outputs, while lower values lead to more predictable and focused outputs.
-- top_p: options.topP - This sets a threshold (between 0 and 1) to control how diverse the predicted tokens should be. The model generates tokens that are likely according to their probability distribution, but also considers the top-k most probable tokens.
-- top_k: options.topK - This parameter limits the number of unique tokens to consider when generating the next token in the sequence. Higher values increase the variety of generated sequences, while lower values lead to more focused outputs.
-- num_predict: options.maxTokens - This determines the maximum number of tokens (words or characters) to generate for the given input prompt.
-- num_thread: options.numThreads - This is the multi-threading configuration option that controls how many threads the model uses for parallel processing. Higher values may lead to faster generation times but could also increase memory usage and complexity. Set this to one or two lower than the number of threads your CPU can handle to leave some for your GUI when running the model locally.
+- temperature: 可选。 temperature - 这是一个参数控制生成文本的随机性。更高的值导致更有创造性，但是可能更少的合理输出，更低的值导致更可预测和目标明确的输出。
+- top_p: 可选。 topP - 这设置一个阈值（在 0 和 1 之间），来控制预测 token 的多样性。模型生成 token ，根据他们的概率分布，但是也会考虑 top-k 最多可能性 token 。
+- top_k: 可选。 topK - 这个参数限制唯一 token 的数量，考虑在序列中生成下一个 token 。更高的值增加生成序列的多样性，而更低的值导致更明确的输出。
+- num_predict: 可选。maxTokens - 这个决定对于给定输入提示词生成 token （字或字符）的最大数量。
+- num_thread: 可选。numThreads - 这是多线程配置选项，控制模型使用多少线程来并行运行。更高的值导致更快的生成时间，但是也会增加内存使用和复杂性。设置这个为 1 或 2 ，低于你的 CPU 可以处理的线程数，为你的 GUI 留出一些，当本地运行模型时。
 
-## Authentication
+## 认证
 
-If you need to send custom headers for authentication, you may use the `requestOptions.headers` property like this:
+如果你需要发送自定义头来认证，你可以使用 `requestOptions.headers` 属性，像这样:
+
 
 ```json title="~/.continue/config.json"
 {
@@ -46,4 +47,4 @@ If you need to send custom headers for authentication, you may use the `requestO
 }
 ```
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/Ollama.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/Ollama.ts)

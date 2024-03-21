@@ -1,10 +1,10 @@
 # OpenAI
 
-The OpenAI class can be used to access OpenAI models like GPT-4, GPT-4 Turbo, and GPT-3.5 Turbo.
+OpenAI 类可以用来访问 OpenAI 模型，比如 GPT-4, GPT-4 Turbo 和 GPT-3.5 Turbo 。
 
-### Azure OpenAI Service
+### Azure OpenAI 服务
 
-If you'd like to use OpenAI models but are concerned about privacy, you can use the Azure OpenAI service, which is GDPR and HIPAA compliant. After applying for access [here](https://azure.microsoft.com/en-us/products/ai-services/openai-service), you will typically hear back within only a few days. Once you have access, set up a model in `config.json` like so:
+如果你想要使用 OpenAI 模型，但是担心隐私问题，你可以使用 Azure OpenAI 服务，它是符合 GDPR 和 HIPAA 的。在接受访问 [这里](https://azure.microsoft.com/en-us/products/ai-services/openai-service) 之后，你通常会在几天之内收到回复。一旦你可以访问，在 `config.json` 中设置一个模型，像这样：
 
 ```json
 "models": [{
@@ -19,11 +19,11 @@ If you'd like to use OpenAI models but are concerned about privacy, you can use 
 }]
 ```
 
-The easiest way to find this information is from the chat playground in the Azure OpenAI portal. Under the "Chat Session" section, click "View Code" to see each of these parameters.
+找到这个信息最简单的方式是在 Azure OpenAI portal 的聊天操场。在 "Chat Session" 部分，点击 "View Code" 来查看每个参数。
 
-### OpenAI compatible servers / APIs
+### OpenAI 兼容的服务器 / API
 
-OpenAI compatible servers
+OpenAI 兼容的服务器
 
 - [text-gen-webui](https://github.com/oobabooga/text-generation-webui/tree/main/extensions/openai#setup--installation)
 - [FastChat](https://github.com/lm-sys/FastChat/blob/main/docs/openai_api.md)
@@ -31,12 +31,12 @@ OpenAI compatible servers
 - [llama-cpp-python](https://github.com/abetlen/llama-cpp-python#web-server)
 - [TensorRT-LLM](https://github.com/NVIDIA/trt-llm-as-openai-windows?tab=readme-ov-file#examples)
 
-OpenAI compatible APIs
+OpenAI 兼容的 API
 
 - [Anyscale Endpoints](https://github.com/continuedev/deploy-os-code-llm#others)
 - [Anyscale Private Endpoints](https://github.com/continuedev/deploy-os-code-llm#anyscale-private-endpoints)
 
-If you are [using an OpenAI compatible server / API](../../model-setup/select-provider#local), you can change the `apiBase` like this:
+如果你 [使用 OpenAI 兼容的服务器 / API](../../model-setup/select-provider#local) ，你可以修改 `apiBase` 像这样：
 
 ```json title="~/.continue/config.json"
 {
@@ -52,4 +52,4 @@ If you are [using an OpenAI compatible server / API](../../model-setup/select-pr
 }
 ```
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/OpenAI.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/OpenAI.ts)

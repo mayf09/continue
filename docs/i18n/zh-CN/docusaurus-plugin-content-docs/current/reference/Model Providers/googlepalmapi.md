@@ -1,6 +1,6 @@
 # GooglePaLMAPI
 
-The Google PaLM API is currently in beta. You can [create an API key in Google MakerSuite](https://makersuite.google.com/u/2/app/apikey) and use either the `chat-bison-001` model or `gemini-pro`. Change `~/.continue/config.json` to look like this:
+Google PaLM API 目前处于 beta 状态。你可以 [在 Google MakerSuite 创建一个 API key](https://makersuite.google.com/u/2/app/apikey) ，使用 `chat-bison-001` 模型或 `gemini-pro` 。修改 `~/.continue/config.json` 看起来像这样：
 
 ```json title="~/.continue/config.json"
 {
@@ -15,4 +15,4 @@ The Google PaLM API is currently in beta. You can [create an API key in Google M
 }
 ```
 
-[View the source](https://github.com/continuedev/continue/blob/main/core/llm/llms/GooglePalm.ts)
+[查看源码](https://github.com/continuedev/continue/blob/main/core/llm/llms/GooglePalm.ts)

@@ -1,6 +1,6 @@
 # TextGenWebUI
 
-TextGenWebUI is a comprehensive, open-source language model UI and local server. You can set it up with an OpenAI-compatible server plugin, and then configure it in your `config.json` like this:
+TextGenWebUI 是一个综合的，开源的语言模型 UI 和本地服务器。你可以设置它使用一个 OpenAI 兼容的服务器插件，然后配置它在你的 `config.json` 像这样：
 
 ```json title="~/.continue/config.json"
 {
