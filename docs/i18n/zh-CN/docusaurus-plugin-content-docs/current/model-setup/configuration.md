@@ -29,7 +29,7 @@ keywords: [configure, llm, provider]
 
 ## Azure OpenAI 服务
 
-If you'd like to use OpenAI models but are concerned about privacy, you can use the Azure OpenAI service, which is GDPR and HIPAA compliant. After applying for access [here](https://azure.microsoft.com/en-us/products/ai-services/openai-service), you will typically hear back within only a few days. Once you have access, set up a model in `config.json` like so:
+如果你想要使用 OpenAI 模型，但是担心隐私问题，你可以使用 Azure OpenAI 服务，它是符合 GDPR 和 HIPAA 的。在接受访问 [这里](https://azure.microsoft.com/en-us/products/ai-services/openai-service) 之后，你通常会在几天之内收到回复。一旦你可以访问，在 `config.json` 中设置一个模型，像这样：
 
 ```json
 "models": [{
@@ -44,13 +44,13 @@ If you'd like to use OpenAI models but are concerned about privacy, you can use 
 }]
 ```
 
-The easiest way to find this information is from the chat playground in the Azure OpenAI portal. Under the "Chat Session" section, click "View Code" to see each of these parameters.
+找到这个信息最简单的方式是在 Azure OpenAI portal 的聊天操场。在 "Chat Session" 部分，点击 "View Code" 来查看每个参数。
 
-## Self-hosting an open-source model
+## 自托管开源模型
 
-For many cases, either Continue will have a built-in provider or the API you use will be OpenAI-compatible, in which case you can use the "openai" provider and change the "baseUrl" to point to the server.
+很多情况下， Continue 将有内建的提供者，或者你使用的 API 是 OpenAI 兼容的，这种情况下，你可以使用 "openai" 提供者并修改 "baseUrl" 指向你的服务器。
 
-However, if neither of these are the case, you will need to wire up a new LLM object. Learn how to do this [here](#defining-a-custom-llm-provider).
+不过，如果这些情况都不是，你需要构建一个新的 LLM 对象。了解如何做这个 [这里](#defining-a-custom-llm-provider) 。
 
 ## 认证
 
@@ -130,11 +130,12 @@ function modifyConfig(config: Config): Config {
 
 这个函数和一些其他默认实现放在 [`continuedev.libs.llm.prompts.chat`](https://github.com/continuedev/continue/blob/main/core/llm/templates/chat.ts) 。
 
-## 定制 /edit 提示
+## 自定义 /edit 提示词
 
-You also have access to customize the prompt used in the '/edit' slash command. We already have a well-engineered prompt for GPT-4 and sensible defaults for less powerful open-source models, but you might wish to play with the prompt and try to find a more reliable alternative if you are for example getting English as well as code in your output.
+你也可以自定义 '/edit' 斜杠命令使用的提示词。我们已经有精心设计的对于 GPT-4 的提示词，以及对于能力稍弱的开源模型的实用的默认提示词，但是你可能希望把玩提示词，试着找出一个更可靠的替代，如果你比如想在输出中得到英语和代码。
 
 To customize the prompt, use the `promptTemplates` property of any model, which is a dictionary, and set the "edit" key to a template string with Mustache syntax. The 'filePrefix', 'fileSuffix', 'codeToEdit', 'language', 'contextItems', and 'userInput' variables are available in the template. Here is an example of how it can be set in `config.ts`:
+为了自定义提示词，使用任何模型的 `promptTemplates` ，它是一个字典，设置 "edit" 键为一个 Mustache 语法的模板字符串。 'filePrefix', 'fileSuffix', 'codeToEdit', 'language', 'contextItems' 和 'userInput' 变量可以在模板中使用。这是一个例子，它如何在 `config.ts` 中设置：
 
 ```typescript title="~/.continue/config.ts"
 const codellamaEditPrompt = `\`\`\`{{{language}}}
@@ -152,11 +153,13 @@ function modifyConfig(config: Config): Config {
 }
 ```
 
-You can find all existing templates for /edit in [`core/llm/templates/edit.ts`](https://github.com/continuedev/continue/blob/main/core/llm/templates/edit.ts).
+你可以在 [`core/llm/templates/edit.ts`](https://github.com/continuedev/continue/blob/main/core/llm/templates/edit.ts) 中找到所有 `/edit` 已存的模板。
 
-## 定义一个定制的 LLM 提供者
+## 定义一个自定义的 LLM 提供者
 
 If you are using an LLM API that isn't already [supported by Continue](./select-provider.md), and is not an OpenAI-compatible API, you'll need to define a `CustomLLM` object in `config.ts`. This object only requires one of (or both of) a `streamComplete` or `streamChat` function. Here is an example:
+
+如果你使用一个 LLM API ，不在 [Continue 支持](./select-provider.md) 中，并且不是 OpenAI 兼容的 API ，你需要在 `config.ts` 中定义一个 `CustomLLM` 对象。这个对象需要一个（或都需要） `streamComplete` 或 `streamChat` 函数。这是一个例子：
 
 ```typescript title="~/.continue/config.ts"
 export function modifyConfig(config: Config): Config {

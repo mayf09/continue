@@ -233,14 +233,13 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
 
 没有看到你想要的？创建一个 issue [这里](https://github.com/continuedev/continue/issues/new?assignees=TyDunn&labels=enhancement&projects=&template=feature-request-%F0%9F%92%AA.md&title=) 来请求一个新的 ContextProvider 。
 
-## Building Your Own Context Provider
+## 构建你自己的上下文提供者
 
-> Currently custom context providers are only supported in VS Code, but are coming soon to JetBrains IDEs.
+> 目前自定义上下文提供者只支持在 VS Code 中，但是很快会出现在 JetBrains IDE 中。
 
-### Introductory Example
+### 入门示例
 
-To write your own context provider, you just have to implement the `CustomContextProvider`
-interface:
+为了编写你自己的上下文提供者，你只需要实现 `CustomContextProvider` 接口：
 
 ```typescript
 interface CustomContextProvider {
@@ -254,11 +253,11 @@ interface CustomContextProvider {
 }
 ```
 
-As an example, let's say you have a set of internal documents that have been indexed in a vector database. You've set up a simple REST API that allows internal users to query and get back relevant snippets. This context provider will send the query to this server and return the results from the vector database. The return type of `getContextItems` _must_ be an array of objects that have all of the following properties:
+作为一个例子，假设你有一系列的内部文件，已经被索引到向量数据库中。你已经配置了一个简单的 REST API ，允许内部用户查询，获取相关的片段。这个上下文提供者将发送查询到这个服务器中，从向量数据库中返回结果。返回的 `getContextItems` 类型 _必须_ 是一个对象列表，包含所有下列属性：
 
-- `name`: The name of the context item, which will be displayed as a title
-- `description`: A longer description of the context item
-- `content`: The actual content of the context item, which will be fed to the LLM as context
+- `name`: 上下文条目的名称，将显示为标题
+- `description`: 上下文条目一个较长的描述
+- `content`: 上下文条目的实际内容，将发送给 LLM 作为上下文
 
 ```typescript title="~/.continue/config.ts"
 const RagContextProvider: CustomContextProvider = {
@@ -287,7 +286,7 @@ const RagContextProvider: CustomContextProvider = {
 };
 ```
 
-It can then be added in `config.ts` like so:
+它可以被添加到 `config.ts` 像这样：
 
 ```typescript title="~/.continue/config.ts"
 export function modifyConfig(config: Config): Config {
@@ -299,15 +298,15 @@ export function modifyConfig(config: Config): Config {
 }
 ```
 
-No modification in `config.json` is necessary.
+没有对 `config.json` 的修改。
 
-### Custom Context Providers with Submenu or Query
+### 自定义上下文提供者，含有子菜单或查询
 
-There are 3 types of context providers: "normal", "query", and "submenu". The "normal" type is the default, and is what we've seen so far.
+有 3 种类型的上下文提供者： "normal", "query" 和 "submenu" 。 "normal" 类型是默认的，是到目前为止我们看到的。
 
-The **"query"** type is used when you want to display a text box to the user, and then use the contents of that text box to generate the context items. Built-in examples include ["search"](#exact-search) and ["google"](#google). This text is what gets passed to the "query" argument in `getContextItems`. To implement a "query" context provider, simply set `"type": "query"` in your custom context provider object.
+**"query"** 类型使用在当你想要展示一个文本框给用户，然后使用那个文本框中的内容来生成上下文条目。内置的例子包括 ["search"](#exact-search) 和 ["google"](#google) 。这个文本发送给 `getContextItems` 的 "query" 参数。为了实现一个 "query" 上下文提供者，简单地在你的自定义上下文提供者对象中设置 `"type": "query"` 。
 
-The **"submenu"** type is used when you want to display a list of searchable items in the dropdown. Built-in examples include ["issue"](#github-issues) and ["folder"](#folders). To implement a "submenu" context provider, set `"type": "submenu"` and implement the `loadSubmenuItems` and `getContextItems` functions. Here is an example that shows a list of all README files in the current workspace:
+**"submenu"** 类型使用在当你想要在下拉框中展示一个可搜索的列表。内置的例子包括 ["issue"](#github-issues) 和 ["folder"](#folders) 。为了实现一个 "submenu" 上下文提供者，设置 `"type": "submenu"` 并实现 `loadSubmenuItems` 和 `getContextItems` 函数。这是一个例子，展示一个当前工作区所有 README 文件的列表。
 
 ```typescript title="~/.continue/config.ts"
 const ReadMeContextProvider: CustomContextProvider = {
@@ -371,29 +370,29 @@ function getFolderAndBasename(path: string): string {
 }
 ```
 
-The flow of information in the above example is as follows:
+上面例子中的信息流如下：
 
-1. The user types `@readme` and selects it from the dropdown, now displaying the submenu where they can search for any item returned by `loadSubmenuItems`.
-2. The user selects one of the READMEs in the submenu, enters the rest of their input, and presses enter.
-3. The `id` of the chosen `ContextSubmenuItem` is passed to `getContextItems` as the `query` argument. In this case it is the filepath of the README.
-4. The `getContextItems` function can then use the `query` to retrieve the full contents of the README and format the content before returning the context item which will be included in the prompt.
+1. 用户输入 `@readme` 并从下拉框中选择它，现在显示子菜单，他们可以搜索 `loadSubmenuItems` 返回的任何条目。
+2. 用户选择子菜单中的一个 README ，输入其他的输入，按下回车。
+3. 被选择的 `ContextSubmenuItem` 的 `id` 被发送给 `getContextItems` 作为 `query` 参数。在这个情况下，它是 README 的文件路径。
+4. 然后 `getContextItems` 函数可以使用 `query` ，来获取 README 的全部内容，对内容进行格式化，在返回上下文条目之前，它将被包含在提示词中。
 
-### Importing outside modules
+### 导入外部模块
 
-To include outside Node modules in your config.ts, run `npm install <module_name>` from the `~/.continue` directory, and then import them in config.ts.
+为了包含外部的 Node 模块到你的 `config.ts` 中，在 `~/.continue` 目录中运行 `npm install <module_name>` ，然后在 `config.ts` 中导入它们：
 
-Continue will use [esbuild](https://esbuild.github.io/) to bundle your `config.ts` and any dependencies into a single Javascript file. The exact configuration used can be found [here](https://github.com/continuedev/continue/blob/5c9874400e223bbc9786a8823614a2e501fbdaf7/extensions/vscode/src/ideProtocol.ts#L45-L52).
+Continue 将使用 [esbuild](https://esbuild.github.io/) 来打包你的 `config.ts` 和任何依赖到一个单独的 Javascript 文件中。使用的配置可以 [这里](https://github.com/continuedev/continue/blob/5c9874400e223bbc9786a8823614a2e501fbdaf7/extensions/vscode/src/ideProtocol.ts#L45-L52) 找到。
 
-### `CustomContextProvider` Reference
+### `CustomContextProvider` 参考
 
-- `title`: An identifier for the context provider
-- `displayTitle` (optional): The title displayed in the dropdown
-- `description` (optional): The longer description displayed in the dropdown when hovered
-- `type` (optional): The type of context provider. Options are "normal", "query", and "submenu". Defaults to "normal".
-- `getContextItems`: A function that returns the documents to include in the prompt. It should return a list of `ContextItem`s, and is given access to the following arguments:
-  - `extras.fullInput`: A string representing the user's full input to the text box. This can be used for example to generate an embedding to compare against a set of other embedded documents
-  - `extras.embeddingsProvider`: The embeddings provider has an `embed` function that will convert text (such as `fullInput`) to an embedding
-  - `extras.llm`: The current default LLM, which you can use to make completion requests
-  - `extras.ide`: An instance of the `IDE` class, which lets you gather various sources of information from the IDE, including the contents of the terminal, the list of open files, or any warnings in the currently open file.
-  - `query`: (not currently used) A string representing the query
-- `loadSubmenuItems` (optional): A function that returns a list of `ContextSubmenuItem`s to display in a submenu. It is given access to an `IDE`, the same that is passed to `getContextItems`.
+- `title`: 上下文提供者的标识符
+- `displayTitle` (可选): 在下拉框中显示的标题
+- `description` (可选): 当鼠标悬停时，在下拉框中显示的较长的描述
+- `type` (可选): 上下文提供者的类型。可选项是 "normal", "query", 和 "submenu" 。默认是 "normal"
+- `getContextItems`: 一个函数，返回包含在提示词中的文档。它应该返回一个 `ContextItem` 列表，可以访问下列参数：
+  - `extras.fullInput`: 一个字符串，表示用户在文本框的全部输入。这是可以用来比如生成一个嵌入，来与一系列其他的嵌入文档进行比较
+  - `extras.embeddingsProvider`: 嵌入提供者有一个 `embed` 函数，将文本（比如 `全部输入`）转换为嵌入
+  - `extras.llm`: 目前默认的 LLM ，可以用来生成补全请求
+  - `extras.ide`: 一个 `IDE` 类的实例，允许你收集 IDE 不同来源的信息，包含终端的内容，打开文件的列表，或者当前打开文件的任何警告
+  - `query`: (不是当前使用的) 一个字符串，表示查询
+- `loadSubmenuItems` (可选): 一个函数，返回一个 `ContextSubmenuItem` 列表，显示在子菜单中。它可以访问 `IDE` ，与传递给 `getContextItems` 的类似

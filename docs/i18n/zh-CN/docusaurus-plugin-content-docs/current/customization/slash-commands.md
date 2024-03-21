@@ -1,22 +1,22 @@
 ---
-title: Slash Commands
-description: Shortcuts that can be activated by prefacing your input with '/'
+title: 斜杠命令
+description: 可以通过 '/' 开头的输入来激活的快捷方式
 keywords: [slash command, custom commands, step]
 ---
 
-# Slash Commands
+# 斜杠命令
 
-Slash commands are shortcuts that can be activated by typing '/' and selecting from the dropdown. For example, the built-in '/edit' slash command let you stream edits directly into your editor.
+斜杠命令是可以通过输入 '/' 激活的快捷方式，并且从下拉框中选择。例如，内置的 '/edit' 斜杠命令，让你直接在你的编辑器中进行流式编辑。
 
-![slash-commands](/img/slash-commands.png)
+![斜杠命令](/img/slash-commands.png)
 
-## Built-in Slash Commands
+## 内置的斜杠命令
 
-To use any of the built-in slash commands, open `~/.continue/config.json` and add it to the `slashCommands` list.
+为了使用任何内置的斜杠命令，打开 `~/.continue/config.json` 并将它加入到 `slashCommands` 列表中。
 
 ### `/edit`
 
-Select code with ctrl/cmd + M (VS Code) or ctrl/cmd + J (JetBrains), and then type "/edit", followed by instructions for the edit. Continue will stream the changes into a side-by-side diff editor.
+使用 ctrl/cmd + M (VS Code) 或 ctrl/cmd + J (JetBrains) 选择代码，然后输入 "/edit" ，后面跟着编辑的指令。 Continue 将修改流式输出到并排的 diff 编辑器中。
 
 ```json
 {
@@ -27,7 +27,7 @@ Select code with ctrl/cmd + M (VS Code) or ctrl/cmd + J (JetBrains), and then ty
 
 ### `/comment`
 
-Comment works just like /edit, except it will automatically prompt the LLM to comment the code.
+注释和 /edit 的工作方式类似，除了它自动地提示 LLM 来注释代码。
 
 ```json
 {
@@ -38,7 +38,7 @@ Comment works just like /edit, except it will automatically prompt the LLM to co
 
 ### `/share`
 
-Type "/share" to generate a shareable markdown transcript of your current chat history.
+输入 "/share" 来生成一个你的当前聊天历史可分享的 markdown 副本。
 
 ```json
 {
@@ -49,7 +49,7 @@ Type "/share" to generate a shareable markdown transcript of your current chat h
 
 ### `/cmd`
 
-Generate a shell command from natural language and (only in VS Code) automatically paste it into the terminal.
+从自然语言生成一个 shell 命令，（只在 VS Code 中）自动粘贴到终端中。
 
 ```json
 {
@@ -60,7 +60,7 @@ Generate a shell command from natural language and (only in VS Code) automatical
 
 ### `/commit`
 
-Shows the LLM your current git diff and asks it to generate a commit message.
+给 LLM 展示你当前的 git diff ，让它生成一个 commit 消息。
 
 ```json
 {
@@ -71,7 +71,7 @@ Shows the LLM your current git diff and asks it to generate a commit message.
 
 ### `/http`
 
-Write a custom slash command at your own HTTP endpoint. Set 'url' in the params object for the endpoint you have setup. The endpoint should return a sequence of string updates, which will be streamed to the Continue sidebar. See our basic [FastAPI example](https://github.com/continuedev/continue/blob/74002369a5e435735b83278fb965e004ae38a97d/core/context/providers/context_provider_server.py#L34-L45) for reference.
+编写一个自定义的斜杠命令，到你自己的 HTTP 端点。在 params 对象中 'url' 设置你配置的端点。端点应该返回一系列的字符串更新，将会流式输入到 Continue 侧边栏。查看我们基本的 [FastAPI 示例](https://github.com/continuedev/continue/blob/74002369a5e435735b83278fb965e004ae38a97d/core/context/providers/context_provider_server.py#L34-L45) 作为参考。
 
 ```json
 {
@@ -83,7 +83,7 @@ Write a custom slash command at your own HTTP endpoint. Set 'url' in the params 
 
 ### `/issue`
 
-Describe the issue you'd like to generate, and Continue will turn into a well-formatted title and body, then give you a link to the draft so you can submit. Make sure to set the URL of the repository you want to generate issues for.
+描述你想生成的 issue ， Continue 将转换为一个格式良好的标题和正文，然后给你一个草稿的链接，让你可以提交。确认设置的你想要生成 issue 的仓库的 URL 。
 
 ```json
 {
@@ -95,7 +95,7 @@ Describe the issue you'd like to generate, and Continue will turn into a well-fo
 
 ### `/so`
 
-The StackOverflow slash command will automatically pull results from StackOverflow to answer your question, quoting links along with its answer.
+StackOverflow 斜杠命令将自动从 StackOverflow 拉取结果来回答你的问题，相关链接和答案一起。
 
 ```json
 {
@@ -104,22 +104,22 @@ The StackOverflow slash command will automatically pull results from StackOverfl
 }
 ```
 
-## Custom Slash Commands
+## 自定义斜杠命令
 
-There are two ways to add custom slash commands:
+有两种方式来添加自定义斜杠命令：
 
-1. With natural language prompts - this is simpler and only requires writing a string or string template.
-2. With a custom function - this gives you full access to the Continue SDK and allows you to write arbitrary Typescript code.
+1. 使用自然语言提示词 - 这是比较简单的，只需要编写一个字符串或字符串模板。
+2. 使用自定义函数 - 这给你 Continue SDK 的完全访问，允许你编写任何的 Typescript 代码。
 
-### "Custom Commands" (Use Natural Language)
+### 自定义命令（使用自然语言）
 
-You can add custom slash commands by adding to the `customCommands` property in `config.json`.
+你可以添加自定义斜杠命令，通过添加 `customCommands` 属性在 `config.json` 中。
 
-- `name`: the name of the command, which will be invoked with `/name`
-- `description`: a short description of the command, which will appear in the dropdown
-- `prompt`: a set of instructions to the LLM, which will be shown in the prompt
+- `name`: 命令的名称，将使用 `/name` 调用
+- `description`: 命令的简单描述，将会在下拉框中出现
+- `prompt`: 一系列到 LLM 的指令，将会在提示词中展示
 
-Custom commands are great when you are frequently reusing a prompt. For example, if you've crafted a great prompt and frequently ask the LLM to check for mistakes in your code, you could add a command like this:
+自定义命令是好的，当你需要频繁地重新使用一个提示词。例如，如果你制作了一个好的提示词，频繁询问 LLM 来检查你代码中的错误，你可以添加一个这样的命令：
 
 ```json title="~/.continue/config.json"
 customCommands=[{
@@ -129,11 +129,11 @@ customCommands=[{
 }]
 ```
 
-### Custom Slash Commands
+### 自定义斜杠命令
 
-If you want to go a step further than writing custom commands with natural language, you can write a custom function that returns the response. This requires using `config.ts` instead of `config.json`.
+如果你想比使用自然语言编写自定义命令更进一步，你可以编写一个自定义函数返回响应。这需要使用 `config.ts` 而不是 `config.json` 。
 
-To do this, push a new `SlashCommand` object to the `slashCommands` list. This object contains "name", the name that you will type to invoke the slash command, "description", the description seen in the dropdown menu, and "run". The `run` function is any async generator that should yield strings as you want them to be streamed to the UI. As an argument to the function, you have access to a `ContinueSDK` object with utilities such as access to certain information/actions within the IDE, the current language model, and a few other utilities. For example, here is a slash command that generates a commit message:
+为了做这个，在 `slashCommands` 列表中添加一个新的 `SlashCommand` 对象。这个对象包含 "name" ，你要调用那个斜杠命令的名称， "description" ，在下拉框菜单中看到的描述，以及 "run" 。 `run` 函数是任何异步生成器，应该生成你希望它们流式输出到 UI 的字符串。作为这个函数的参数，你可以使用工具访问 `ContinueSDK` 对象，比如访问一个 IDE 中指定的信息/动作，当前的语言模型，以及一些其他工具。例如，这是一个斜杠命令，用来生成 commit 消息：
 
 ```typescript title="~/.continue/config.ts"
 export function modifyConfig(config: Config): Config {

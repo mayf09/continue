@@ -2,18 +2,18 @@
 
 Continue 是使用任何 [Large Language Model (LLM)](https://www.youtube.com/watch?v=zjkBMFhNj_g) 编码的最简单的方式。你可以使用它，通过商业模型，比如 GPT-4 ，通过 OpenAI API ，开源模型，比如 CodeLlama ，使用 Ollama 运行在你的笔记本上，以及所有中间的东西。
 
-When you first install Continue, you can try it out for free using a proxy server that securely makes calls with our API keys to models like GPT-4, Gemini Pro, and Phind CodeLlama via OpenAI, Google, and Together respectively.
+当你第一次安装 Continue ，你可以试用它，通过免费使用一个代理服务器，安全地使用我们的 API key 调用模型，比如 GPT-4, Gemini Pro, and Phind CodeLlama ，分别通过 OpenAI, Google, 和 Together 。
 
-Once you're ready to use your own API key or a different model / provider, press the `+` button in the bottom left to add a new model to your `config.json`.
+一旦你准备使用自己的 API key 或者一个不同的模型/提供者，点击左下方 `+` 按钮添加一个新的模型到你的 `config.json` 中。
 
-If you are unsure what model or provider to use, here is our current rule of thumb:
+如果你不确定使用哪个模型或提供者，这是我们目前的经验法则：
 
-- Use GPT-4 via OpenAI if you want the best possible model overall
-- Use DeepSeek Coder 33B via the Together API if you want the best open-source model
-- Use DeepSeek Coder 6.7B with Ollama if you want to run a model locally
+- 使用 OpenAI 的 GPT-4 ，如果你想要总体最好的模型
+- 通过 Together API 使用 DeepSeek Coder 33B ，如果你想要最好的开源模型
+- 通过 Ollama 使用 DeepSeek Coder 6.7B ，如果你想要在本地运行模型
 
-Learn more:
+了解更多：
 
-- [Select a provider](select-provider.md)
-- [Select a model](select-model.md)
-- [Configuration](configuration.md)
+- [选择提供者](select-provider.md)
+- [选择模型](select-model.md)
+- [配置](configuration.md)
