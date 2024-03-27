@@ -3,4 +3,4 @@ id: index
 slug: /
 ---
 
-主页 This index page should automatically redirect to [/docs/intro](./intro.md)
+这个索引页应该自动重定向到 [/docs/intro](./intro.md)

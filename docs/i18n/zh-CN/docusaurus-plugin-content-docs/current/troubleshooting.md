@@ -1,6 +1,6 @@
 ---
-title: ❓ 问题解决
-description: 问题解决，在等待 beta / alpha 测试帮助时
+title: ❓ 故障排除
+description: 故障排除，在等待 beta / alpha 测试帮助时
 keywords: [reload, delete, manually, logs, server, console]
 ---
 
