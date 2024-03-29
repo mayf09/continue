@@ -1,12 +1,12 @@
 ---
 title: 代码库检索
 description: 与你的代码库交互
-keywords: [talk, embeddings, codebase, experimental]
+keywords: [交互, 嵌入, 代码库, 试验性的]
 ---
 
 # 代码库检索
 
-Continue 对你的代码库做索引，以便之后从任何你的工作区自动查找最相关的上下文。这是由基于嵌入的检索和关键字搜索结合完成的。默认情况下，所以嵌入是通过 `all-MiniLM-L6-v2` 本地计算的，并保存在本地的 `~/.continue/index` 。
+Continue 对你的代码库做索引，以便之后从任何你的工作区自动查找最相关的上下文。这是由基于嵌入的检索和关键字搜索结合完成的。默认情况下，所以嵌入是通过 `all-MiniLM-L6-v2` 本地计算的，保存在本地的 `~/.continue/index` 中。
 
 目前，代码库检索功能在 "codebase" 和 "folder" 上下文提供者中可用。你可以在输入框中输入 `@codebase` 或 `@folder` 来使用它们，然后提出问题。输入框中的内容将与其余代码库（或文件夹）的嵌入进行比较，来决定相关的文件。
 
@@ -137,9 +137,9 @@ text-embedding-3-large 模型的配置。
 }
 ```
 
-### 编写一个定制的 `EmbeddingsProvider`
+### 编写一个自定义的 `EmbeddingsProvider`
 
-如果你有自己的生成嵌入的 API 能力， Continue 可以简单地编写一个定制 `EmbeddingsProvider` 。你需要做的就是，编写一个函数，将字符串转换为数字列表，并将它加入到你的 `config.ts` 配置中。这是一个示例：
+如果你有自己生成嵌入的 API 能力， Continue 可以简单地编写一个自定义 `EmbeddingsProvider` 。你需要做的就是，编写一个函数，将字符串转换为数字列表，并将它加入到你的 `config.ts` 配置中。这是一个示例：
 
 ```ts title="~/.continue/config.ts"
 export function modifyConfig(config: Config): Config {
@@ -162,10 +162,10 @@ export function modifyConfig(config: Config): Config {
 }
 ```
 
-## 定制哪个文件进行索引
+## 自定义哪个文件进行索引
 
-Continue 关注 `.gitignore` 文件，为了决定哪个文件不被索引。如果你想要排除更多的文件，你可以把它们加入到 `.continueignore` 文件，遵守 `.gitignore` 完全相同的规则。
+Continue 关注 `.gitignore` 文件，决定哪个文件不被索引。如果你想要排除更多的文件，你可以把它们加入到 `.continueignore` 文件，遵守 `.gitignore` 完全相同的规则。
 
-如果你想准确地查看哪个文件被 Continue 索引，元数据存储在 `~/.continue/index/index.sqlite` 。你可以使用工具，比如 [DB Browser for SQLite](https://sqlitebrowser.org/) 来查看这个文件的 `tags_catalog` 表。
+如果你想准确地查看哪个文件被 Continue 索引，元数据存储在 `~/.continue/index/index.sqlite` 中。你可以使用工具，比如 [DB Browser for SQLite](https://sqlitebrowser.org/) 来查看这个文件的 `tags_catalog` 表。
 
-如果你希望强制更新索引，重新加载 VS Code 窗口，使用 `cmd/ctrl + shift + p` + "重新加载窗口" 。
+如果你希望强制更新索引，使用 `cmd/ctrl + shift + p` + "重新加载窗口" 重新加载 VS Code 窗口。

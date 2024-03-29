@@ -4,7 +4,7 @@ Continue 现在支持在 [the VS Code 扩展](https://marketplace.visualstudio.c
 
 ## 使用 Ollama 设置（默认）
 
-我们推荐设置 tab 补全，使用一个本地的 Ollama 实例。为了这么做，首先从 [这里](https://ollama.ai) 下载 Ollam 的最新版。然后，运行下面的命令来下载我们推荐的模型：
+我们推荐使用一个本地的 Ollama 实例设置 tab 自动补全。为了做这个，首先从 [这里](https://ollama.ai) 下载 Ollam 的最新版。然后，运行下面的命令来下载我们推荐的模型：
 
 ```bash
 ollama run starcoder:3b
@@ -12,9 +12,9 @@ ollama run starcoder:3b
 
 一旦下载完成，你应该开始在 VS Code 中看到补全。
 
-## 设置一个定制的模型
+## 设置一个自定义的模型
 
-所有适用于聊天模型的配置选项都适用于 tab 补全使用。例如，如果你希望使用一个远程 Ollama 实例，你应该编辑你的 `config.json` 像这样:
+所有适用于聊天模型的配置选项都适用于 tab 自动补全中使用。例如，如果你希望使用一个远程 Ollama 实例，你应该编辑你的 `config.json` ，像这样:
 
 ```json title=~/.continue/config.json
 {
@@ -28,7 +28,7 @@ ollama run starcoder:3b
 }
 ```
 
-如果你还不熟悉可用的选项，你可以在我们的 [概述](../model-setup/overview.md) 中学到更多。
+如果你还不熟悉可用的选项，你可以在我们的 [概述](../model-setup/overview.md) 中了解更多。
 
 ## 配置选项
 
@@ -69,7 +69,7 @@ ollama run starcoder:3b
 }
 ```
 
-## 问题解决
+## 故障排除
 
 ### 我没有看到任何补全
 

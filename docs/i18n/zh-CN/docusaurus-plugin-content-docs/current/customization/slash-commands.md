@@ -1,12 +1,12 @@
 ---
 title: 斜杠命令
 description: 可以通过 '/' 开头的输入来激活的快捷方式
-keywords: [slash command, custom commands, step]
+keywords: [斜杠命令, 自定义命令, step]
 ---
 
 # 斜杠命令
 
-斜杠命令是可以通过输入 '/' 激活的快捷方式，并且从下拉框中选择。例如，内置的 '/edit' 斜杠命令，让你直接在你的编辑器中进行流式编辑。
+斜杠命令是可以通过输入 '/' 激活，并且从下拉框中选择的快捷方式。例如，内置的 `/edit` 斜杠命令，让你直接在你的编辑器中进行流式编辑。
 
 ![斜杠命令](/img/slash-commands.png)
 
@@ -16,7 +16,7 @@ keywords: [slash command, custom commands, step]
 
 ### `/edit`
 
-使用 ctrl/cmd + M (VS Code) 或 ctrl/cmd + J (JetBrains) 选择代码，然后输入 "/edit" ，后面跟着编辑的指令。 Continue 将修改流式输出到并排的 diff 编辑器中。
+使用 ctrl/cmd + M (VS Code) 或 ctrl/cmd + J (JetBrains) 选择代码，然后输入 `/edit` ，后面跟着编辑的指令。 Continue 将修改流式输出到并排的 diff 编辑器中。
 
 ```json
 {
@@ -27,7 +27,7 @@ keywords: [slash command, custom commands, step]
 
 ### `/comment`
 
-注释和 /edit 的工作方式类似，除了它自动地提示 LLM 来注释代码。
+注释和 `/edit` 的工作方式类似，除了它自动地提示 LLM 来注释代码。
 
 ```json
 {
@@ -38,7 +38,7 @@ keywords: [slash command, custom commands, step]
 
 ### `/share`
 
-输入 "/share" 来生成一个你的当前聊天历史可分享的 markdown 副本。
+输入 `/share` 来生成一个你的当前聊天历史可分享的 markdown 副本。
 
 ```json
 {
@@ -71,7 +71,7 @@ keywords: [slash command, custom commands, step]
 
 ### `/http`
 
-编写一个自定义的斜杠命令，到你自己的 HTTP 端点。在 params 对象中 'url' 设置你配置的端点。端点应该返回一系列的字符串更新，将会流式输入到 Continue 侧边栏。查看我们基本的 [FastAPI 示例](https://github.com/continuedev/continue/blob/74002369a5e435735b83278fb965e004ae38a97d/core/context/providers/context_provider_server.py#L34-L45) 作为参考。
+编写一个自定义的斜杠命令，到你自己的 HTTP 端点。在 params 对象中 'url' 设置你配置的端点。端点应该返回一系列的字符串更新，将会流式输入到 Continue 侧边栏。查看我们基本的 [FastAPI 示例](https://github.com/continuedev/continue/blob/74002369a5e435735b83278fb965e004ae38a97d/core/context/providers/context_provider_server.py#L34-L45) 作参考。
 
 ```json
 {
@@ -83,7 +83,7 @@ keywords: [slash command, custom commands, step]
 
 ### `/issue`
 
-描述你想生成的 issue ， Continue 将转换为一个格式良好的标题和正文，然后给你一个草稿的链接，让你可以提交。确认设置的你想要生成 issue 的仓库的 URL 。
+描述你想生成的 issue ， Continue 将转换为一个格式良好的标题和正文，然后给你一个草稿的链接，让你可以提交。确认设置你想要生成 issue 的仓库的 URL 。
 
 ```json
 {
@@ -119,7 +119,7 @@ StackOverflow 斜杠命令将自动从 StackOverflow 拉取结果来回答你的
 - `description`: 命令的简单描述，将会在下拉框中出现
 - `prompt`: 一系列到 LLM 的指令，将会在提示词中展示
 
-自定义命令是好的，当你需要频繁地重新使用一个提示词。例如，如果你制作了一个好的提示词，频繁询问 LLM 来检查你代码中的错误，你可以添加一个这样的命令：
+当你需要频繁地重新使用一个提示词时，自定义命令是好的。例如，如果你制作了一个好的提示词，频繁询问 LLM 来检查你代码中的错误，你可以添加一个这样的命令：
 
 ```json title="~/.continue/config.json"
 customCommands=[{

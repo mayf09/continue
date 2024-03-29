@@ -1,14 +1,14 @@
 ---
 title: 上下文提供者
 description: 输入 '@' 来选择内容给 LLM 作为上下文
-keywords: [context, "@", provider, LLM]
+keywords: [上下文, "@", 提供者, LLM]
 ---
 
 # 上下文提供者
 
-上下文提供者允许你输入 '@' 看到一个下拉框内容，可以输入给 LLM 作为上下文。每个上下文提供者是一个插件，也就是说如果你想要引用一些不在这里的信息来源，你可以请求（或者构建！）一个新的上下文提供者。
+上下文提供者允许你输入 '@' 看到一个内容下拉框，这些全部可以输入给 LLM 作为上下文。每个上下文提供者都是一个插件，也就是说如果你想要引用一些不在这里的信息来源，你可以请求（或者构建！）一个新的上下文提供者。
 
-举个例子，比如你正在解决一个 Github Issue 。你输入 '@issue' 并选择一个你工作的。 Continue 可以看到 issue 的标题和内容。你也知道那个 issue 与文件 'readme.md' 和 'helloNested.py' 相关，所以你输入 '@readme' 和 '@hello' 来寻找和选择它们。现在这 3 个 "上下文条目" 会显示在你其余输入的行内。
+举个例子，比如你正在解决一个 Github Issue 。你输入 '@issue' 并选择一个你在工作的 Issue 。 Continue 可以看到 issue 的标题和内容。你也知道那个 issue 与文件 'readme.md' 和 'helloNested.py' 相关，所以你输入 '@readme' 和 '@hello' 来寻找和选择它们。现在这 3 个 "上下文条目" 会显示在你其余输入的行内。
 
 ![上下文条目](/img/context-provider-example.png)
 
@@ -26,7 +26,7 @@ keywords: [context, "@", provider, LLM]
 
 ### Git Diff
 
-输入 '@diff' 来引用你对当前分支所做的所有修改。这是有用的，如果你想总结你所做的，或者在提交之前询问一个你的工作的通用的复查。
+输入 '@diff' 来引用你对当前分支所做的所有修改。这是有用的，如果你想总结你所做的，或者在提交之前询问一个你的工作的通用的检查。
 
 ```json
 { "name": "diff" }
@@ -178,7 +178,7 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
 
 只需要创建数据库连接的配置： `host`, `port`, `user`, `password` 和 `database` 。
 
-默认情况下， `schema` 过滤器设置为 `public` ， `sampleRows` 设置为 3 。你可以取消设置 schema ，如果你希望包含所有 schema 的表。
+默认情况下， `schema` 过滤器设置为 `public` ， `sampleRows` 设置为 3 。如果你希望包含所有 schema 的表，你可以取消设置 schema 。
 
 [这是一个简单的 demo](https://github.com/continuedev/continue/pull/859) 。
 
@@ -256,7 +256,7 @@ interface CustomContextProvider {
 作为一个例子，假设你有一系列的内部文件，已经被索引到向量数据库中。你已经配置了一个简单的 REST API ，允许内部用户查询，获取相关的片段。这个上下文提供者将发送查询到这个服务器中，从向量数据库中返回结果。返回的 `getContextItems` 类型 _必须_ 是一个对象列表，包含所有下列属性：
 
 - `name`: 上下文条目的名称，将显示为标题
-- `description`: 上下文条目一个较长的描述
+- `description`: 上下文条目的一个较长的描述
 - `content`: 上下文条目的实际内容，将发送给 LLM 作为上下文
 
 ```typescript title="~/.continue/config.ts"
@@ -286,7 +286,7 @@ const RagContextProvider: CustomContextProvider = {
 };
 ```
 
-它可以被添加到 `config.ts` 像这样：
+它可以被添加到 `config.ts` 中，像这样：
 
 ```typescript title="~/.continue/config.ts"
 export function modifyConfig(config: Config): Config {
@@ -298,9 +298,9 @@ export function modifyConfig(config: Config): Config {
 }
 ```
 
-没有对 `config.json` 的修改。
+不需要对 `config.json` 修改。
 
-### 自定义上下文提供者，含有子菜单或查询
+### 自定义含有子菜单或查询的上下文提供者
 
 有 3 种类型的上下文提供者： "normal", "query" 和 "submenu" 。 "normal" 类型是默认的，是到目前为止我们看到的。
 
@@ -375,7 +375,7 @@ function getFolderAndBasename(path: string): string {
 1. 用户输入 `@readme` 并从下拉框中选择它，现在显示子菜单，他们可以搜索 `loadSubmenuItems` 返回的任何条目。
 2. 用户选择子菜单中的一个 README ，输入其他的输入，按下回车。
 3. 被选择的 `ContextSubmenuItem` 的 `id` 被发送给 `getContextItems` 作为 `query` 参数。在这个情况下，它是 README 的文件路径。
-4. 然后 `getContextItems` 函数可以使用 `query` ，来获取 README 的全部内容，对内容进行格式化，在返回上下文条目之前，它将被包含在提示词中。
+4. 然后 `getContextItems` 函数可以使用 `query` ，来获取 README 的全部内容，在返回上下文条目之前，对内容进行格式化，它将被包含在提示词中。
 
 ### 导入外部模块
 
