@@ -120,6 +120,41 @@ keywords: [上下文, "@", 提供者, LLM]
 }
 ```
 
+### GitLab 合并请求
+
+输入 `@gitlab-mr` 来引用一个 Gitlab 上这个分支打开的 MR 。
+
+#### 配置
+
+你需要创建一个具有 `read_api` 范围的 [personal access token](https://docs.gitlab.com/ee/user/profile/personal_acess_tokens.html) 。然后把下面这个加到配置中。
+
+```json
+{
+  "name": "gitlab-mr",
+  "params": {
+    "token": "..."
+  }
+}
+```
+
+#### 使用自托管的 GitLab
+
+你可以指定访问的域名，通过在配置中设置 `domain` 参数。默认情况下是 `gitlab.com` 。
+
+```json
+{
+  "name": "gitlab-mr",
+  "params": {
+    "token": "...",
+    "domain": "gitlab.example.com"
+  }
+}
+```
+
+#### 过滤注释
+
+如果你选择部分代码进行编辑，你可以有上下文提供者滤除其他文件的注释。要启用这个特性，设置 `filterComments` 为 `true` 。
+
 ### Jira Issues
 
 输入 '@jira' 来引用 Jira issue 的讨论。确保使用你自己的 [Atlassian API Token](https://id.atlassian.com/manage-profile/security/api-tokens) 。
@@ -225,6 +260,19 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
         }
       }
     ]
+  }
+}
+```
+
+### 调试器：本地变量
+
+输入 `@locals` 来引用本地变量的内容，关于那个线程最高 n 层（默认 3 层）的调用 stack 。一个下拉框会出现，允许你选择一个指定的线程来查看那个线程的本地变量。
+
+```json
+{
+  "name": "locals",
+  "params": {
+    "stackDepth": 3
   }
 }
 ```

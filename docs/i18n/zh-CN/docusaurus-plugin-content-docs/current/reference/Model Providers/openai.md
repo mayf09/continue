@@ -25,6 +25,7 @@ OpenAI 类可以用来访问 OpenAI 模型，比如 GPT-4, GPT-4 Turbo 和 GPT-3
 
 OpenAI 兼容的服务器
 
+- [KoboldCpp](https://github.com/lostruins/koboldcpp)
 - [text-gen-webui](https://github.com/oobabooga/text-generation-webui/tree/main/extensions/openai#setup--installation)
 - [FastChat](https://github.com/lm-sys/FastChat/blob/main/docs/openai_api.md)
 - [LocalAI](https://localai.io/basics/getting_started/)

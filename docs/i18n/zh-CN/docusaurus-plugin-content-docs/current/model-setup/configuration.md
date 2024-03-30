@@ -69,6 +69,8 @@ Basic 认证可以对任何提供者起作用，使用 `apiKey` 字段：
 }
 ```
 
+这个转换为 header `"Authorization": "Bearer xxx"` 。
+
 如果你需要发送自定义 header 来认证，你可以使用 `requestOptions.headers` 属性，比如在这个示例中使用 Ollama ：
 
 ```json title="~/.continue/config.json"

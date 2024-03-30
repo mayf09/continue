@@ -17,6 +17,7 @@ Continue 可以简单地切换不同的 LLM 提供者。你可以点击模型下
 - [Ollama](../reference/Model%20Providers/ollama.md)
 - [LM Studio](../reference/Model%20Providers/lmstudio.md)
 - [Llama.cpp](../reference/Model%20Providers/llamacpp.md)
+- [KoboldCpp](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
 - [llamafile](../reference/Model%20Providers/llamafile) ((OpenAI 兼容服务器)
 - [LocalAI](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
 - [Text generation web UI](../reference/Model%20Providers/openai.md) (OpenAI 兼容服务器)
