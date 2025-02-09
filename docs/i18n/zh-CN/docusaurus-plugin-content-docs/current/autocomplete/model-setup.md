@@ -30,7 +30,7 @@ Codestral 的 API key 和通常的 Mistral API 是不同的。如果你使用 Co
 
 ## 本地的，离线的/自托管的体验
 
-对于倾向于本地执行或自托管的， `Qwen2.5-Coder 1.5B` 提供了一个对于大多数用户性能和质量的平衡：
+对于倾向于本地执行或自托管的， `Qwen2.5-Coder 1.5B` 提供了一个对于大多数用户性能和质量的平衡，(e.g. using [Ollama](../customize/model-providers/top-level/ollama.md) or [LM Studio](../customize/model-providers/more/lmstudio.md))：
 
 ```json title="config.json""
 {
