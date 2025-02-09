@@ -5,6 +5,10 @@ keywords: [模型, 自动补全]
 sidebar_position: 2
 ---
 
+:::info
+This page recommends models and providers for Autocomplete. Read more about how to set up your `config.json` [here](../reference.md).
+:::
+
 ## 最好的总体体验
 
 为了最好的自动补全体验，我们推荐通过 [Mistral API](https://console.mistral.ai/) 使用 Codestral 。这个模型提供高质量的补全，使用极好的代码上下文理解：
