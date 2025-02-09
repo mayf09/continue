@@ -1,16 +1,16 @@
 ---
-title: 硅基流动
+title: SiliconFlow
 ---
 
 :::info
 
-你可以从 [Silicon Cloud](https://cloud.siliconflow.cn/account/ak) 获取 API key 。
+You can get an API key from the [Silicon Cloud](https://cloud.siliconflow.cn/account/ak).
 
 :::
 
-## 聊天模型
+## Chat model
 
-我们推荐配置 **Qwen/Qwen2.5-Coder-32B-Instruct** 作为你的聊天模型。
+We recommend configuring **Qwen/Qwen2.5-Coder-32B-Instruct** as your chat model.
 
 ```json title="config.json"
 {
@@ -25,9 +25,9 @@ title: 硅基流动
 }
 ```
 
-## 自动补全模型
+## Autocomplete model
 
-我们推荐配置 **Qwen/Qwen2.5-Coder-7B-Instruct** 作为你的自动补全模型。
+We recommend configuring **Qwen/Qwen2.5-Coder-7B-Instruct** as your autocomplete model.
 
 ```json title="config.json"
 {
@@ -40,12 +40,10 @@ title: 硅基流动
 }
 ```
 
-## 嵌入模型
+## Embeddings model
 
-SiliconFlow 提供了一些嵌入模型，[点击这里](https://siliconflow.cn/models) 查看所有的嵌入模型.
+SiliconFlow provide some embeddings models, [Click here](https://siliconflow.cn/models) to see a list of embeddings models.
 
-## 重排序模型
+## Reranking model
 
-SiliconFlow 提供了一些重排序模型，[点击这里](https://siliconflow.cn/models) 查看所有的重排序模型.
-
-[Click here](https://siliconflow.cn/models) to see a list of reranking models.
+SiliconFlow provide some reranking models, [Click here](https://siliconflow.cn/models) to see a list of reranking models.

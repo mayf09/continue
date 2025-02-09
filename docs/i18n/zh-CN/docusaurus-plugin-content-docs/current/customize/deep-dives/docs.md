@@ -6,7 +6,7 @@ toc_max_heading_level: 5
 
 # @Docs
 
-[`@Docs` 上下文提供者](http://localhost:3000/customization/context-providers#documentation) 允许你直接通过 Continue 与自己的文档交互。这个特性运行你索引任何静态网站或 Github markdown 页面，让你在编码时访问和利用你的文档更方便。
+[`@Docs` 上下文提供者](customize/context-providers.md#docs) 允许你直接通过 Continue 与自己的文档交互。这个特性运行你索引任何静态网站或 Github markdown 页面，让你在编码时访问和利用你的文档更方便。
 
 ## 启用 `@Docs` 上下文提供者
 
@@ -67,6 +67,25 @@ toc_max_heading_level: 5
 - `startUrl`: 索引进程开始的 URL 。
 <!-- - `rootUrl`: 文档网站的基本 URL ，用来确定哪个页面索引。 -->
 - `faviconUrl`: 网站 favicon 的 URL ，用来在 UI 中进行视觉识别。
+
+## 配置
+
+使用 [@Codebase 上下文提供者配置](https://docs.continue.dev/customize/deep-dives/codebase#configuration) ，你可以调整 docs 上下文提供者的行为，使用 `nRetrieve`, `nFinal` 和 `useReranking`
+
+```json title="config.json"
+{
+  "contextProviders": [
+    {
+      "name": "docs",
+      "params": {
+        "nRetrieve": 25,
+        "nFinal": 5,
+        "useReranking": true
+      }
+    }
+  ]
+}
+```
 
 ## 使用 `useChromiumForDocsCrawling` 爬取动态生成的网站
 

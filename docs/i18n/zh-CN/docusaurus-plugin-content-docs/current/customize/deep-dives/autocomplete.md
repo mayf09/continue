@@ -23,7 +23,7 @@ keywords: [自动补全]
 如果你想要本地运行自己的自动补全模型，我们推荐使用 Ollama 。要做这个，首先从 [这里](https://ollama.ai) 下载最新版的 Ollama 。然后，运行下面的命令下载我们推荐的模型：
 
 ```bash
-ollama run starcoder2:3b
+ollama run qwen2.5-coder:1.5b-base
 ```
 
 一旦它下载完成，你应该可以再 VS Code 中看到补全。
@@ -37,14 +37,14 @@ ollama run starcoder2:3b
     "tabAutocompleteModel": {
         "title": "Tab Autocomplete Model",
         "provider": "ollama",
-        "model": "starcoder2:3b",
+        "model": "qwen2.5-coder:1.5b-base",
         "apiBase": "https://<my endpoint>"
     },
     ...
 }
 ```
 
-如果你对可用选项不熟悉，你可以在 [这里](../../reference.md) 查找完整的参考。
+如果你对可用选项不熟悉，你可以在 [这里](./configuration.md) 查找完整的参考。
 
 ## 配置选项
 
@@ -52,7 +52,7 @@ ollama run starcoder2:3b
 
 ### `tabAutocompleteModel`
 
-这是另一个对象，就像 `config.json` 中的 `"models"` 列表。你可以选择和配置任何你想要的模型，但是我们强烈建议使用针对 tab 自动补全的小的模型，例如 `deepseek-1b`, `starcoder-1b` 或 `starcoder2-3b` 。
+这是另一个对象，就像 `config.json` 中的 `"models"` 列表。你可以选择和配置任何你想要的模型，但是我们强烈建议使用针对 tab 自动补全的小的模型，例如 `deepseek-1b`, `qwen2.5-coder:1.5b` 或 `starcoder2-3b` 。
 
 ### `tabAutocompleteOptions`
 
@@ -76,7 +76,7 @@ ollama run starcoder2:3b
   "tabAutocompleteModel": {
     "title": "Tab Autocomplete Model",
     "provider": "ollama",
-    "model": "starcoder2:3b",
+    "model": "qwen2.5-coder:1.5b-base",
     "apiBase": "https://<my endpoint>"
   },
   "tabAutocompleteOptions": {
@@ -91,7 +91,7 @@ ollama run starcoder2:3b
 
 ### 我想要更好的补全，是否应该使用 GPT-4 ？
 
-可能出乎意料，答案是否定的。我们推荐的自动补全模型是通过高度特定提示词格式训练的，这运行它们响应请求来补全代码(在 [这里](https://github.com/continuedev/continue/blob/d2bc6359e8ebf647892ec953e418042dc7f8a685/core/autocomplete/templates.ts) 查看这些提示词的示例)。一些最好的商业化模型，比如 GPT-4 或 Claude 不是通过这种提示词格式训练的，这意味着它们不能生成有用的补全。幸运地，好的自动补全不需要很大的模型。大多数先进的自动补全模型不大于 10b 参数，增加超过这个没有明显地提高性能。
+可能出乎意料，答案是否定的。我们推荐的自动补全模型是通过高度特定提示词格式训练的，这运行它们响应请求来补全代码(在 [这里](https://github.com/continuedev/continue/blob/main/core/autocomplete/templating/AutocompleteTemplate.ts) 查看这些提示词的示例)。一些最好的商业化模型，比如 GPT-4 或 Claude 不是通过这种提示词格式训练的，这意味着它们不能生成有用的补全。幸运地，好的自动补全不需要很大的模型。大多数先进的自动补全模型不大于 10b 参数，增加超过这个没有明显地提高性能。
 
 ### 我没有看到任何补全
 
@@ -99,15 +99,11 @@ ollama run starcoder2:3b
 
 1. 确保你有 "Enable Tab Autocomplete" 设置勾选，（在 VS Code 中，你可以切换，通过点击状态栏中的 "Continue" 按钮，在 JetBrains 中，通过 Settings -> Tools -> Continue ）。
 2. 确保你下载了 Ollama 。
-3. 运行 `ollama run starcoder2:3b` 确认模型下载完成。
+3. 运行 `ollama run qwen2.5-coder:1.5b-base` 确认模型下载完成。
 4. 确保任何其他补全提供者被禁用（例如 Copilot ），它们可能会干扰。
-5. 检查输出的日志，查找可能得错误（ cmd/ctrl+shift+p -> "Toggle Developer Tools" -> "Console" tab 在 VS Code 中，~/.continue/logs/core.log 在 JetBrains 中）。
-6. 检查 VS Code 设置，确保 `"editor.inlineSuggest.enabled"` 设置为 `true` （使用 `cmd/ctrl+,` 然后搜索这个并勾选方框）
+5. 检查输出的日志，查找可能得错误 <kbd>cmd/ctrl</kbd> + <kbd>shift</kbd> + <kbd>p</kbd> -> "Toggle Developer Tools" -> "Console" tab 在 VS Code 中，~/.continue/logs/core.log 在 JetBrains 中。
+6. 检查 VS Code 设置，确保 `"editor.inlineSuggest.enabled"` 设置为 `true` （使用 <kbd>cmd/ctrl</kbd> + <kbd>,</kbd> 然后搜索这个并勾选方框）
 7. 如果你仍然有问题，请在我们的 [Discord](https://discord.gg/vapESyrFmJ) 让我们知道，我们将会尽快提供帮助。
-
-### 补全太慢
-
-基于你的硬件，你想要尝试一个更小、更快的模型。如果 3b 不能对你有效工作，我们推荐尝试 `deepseek-coder:1.3b-base` 。
 
 ### 补全总是单行的
 
@@ -120,8 +116,8 @@ ollama run starcoder2:3b
 1. 设置 `"editor.inlineSuggest.enabled": false` 在 VS Code 设置中，禁止自动建议
 2. 打开 "快捷键" (cmd/ctrl+k, cmd/ctrl+s) 并查找 `editor.action.inlineSuggest.trigger`
 3. 点击 "+" 图标添加一个新的键绑定
-4. 按下你想要触发建议的键组合（例如 `ctrl+space`）
-5. 现在，无论何时你想要查看建议，按下键绑定（例如，`ctrl+space` ）来手动触发建议
+4. 按下你想要触发建议的键组合（例如 <kbd>cmd/ctrl</kbd> + <kbd>space</kbd>）
+5. 现在，无论何时你想要查看建议，按下键绑定（例如，<kbd>cmd/ctrl</kbd> + <kbd>space</kbd>）来手动触发建议
 
 ### 是否有快捷键一次接受一行？
 
@@ -134,6 +130,8 @@ ollama run starcoder2:3b
 点击屏幕右下角状态栏中的 "Continue" 按钮。选择标志会变成 "cancel" 符号，你将不会再看到补全。你可以再次点击它，重新打开补全。
 
 另外，打开 VS Code 设置，搜索 "Continue" 并取消勾选 "Enable Tab Autocomplete" 方框。
+
+你还可以使用默认的快捷方式来禁用自动补全，使用一个组合键：按下并保持 <kbd>ctrl/cmd</kbd> + <kbd>K</kbd> (继续保持 <kbd>ctrl/cmd</kbd>) 并按下 <kbd>ctrl/cmd</kbd> + <kbd>A</kbd> 。这将关闭自动补全而不需要导航到设置。
 
 #### JetBrains
 

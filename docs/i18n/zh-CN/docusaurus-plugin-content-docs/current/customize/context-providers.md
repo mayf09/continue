@@ -56,9 +56,23 @@ keywords: [上下文, "@", 提供者, LLM]
 }
 ```
 
+### `@Current File`
+
+Reference the currently open file.
+
+```json title="config.json"
+{
+  "contextProviders": [
+    {
+      "name": "currentFile"
+    }
+  ]
+}
+```
+
 ### `@Terminal`
 
-关联你的 IDE 终端的内容。
+关联你的 IDE 终端中最后运行的命令和它的输出。
 
 ```json title="config.json"
 {
@@ -100,6 +114,20 @@ keywords: [上下文, "@", 提供者, LLM]
       "params": {
         "onlyPinned": true
       }
+    }
+  ]
+}
+```
+
+### `@Web`
+
+通过网络引用相关的页面，通过你的输入自动确定。
+
+```json title="config.json"
+{
+  "contextProviders": [
+    {
+      "name": "web"
     }
   ]
 }
@@ -277,7 +305,7 @@ keywords: [上下文, "@", 提供者, LLM]
       "name": "jira",
       "params": {
         "domain": "company.atlassian.net",
-        "token ": "ATATT..."
+        "token": "ATATT..."
       }
     }
   ]
@@ -313,6 +341,36 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
 
 你可以覆盖这个查询，通过设置 `issueQuery` 参数。
 
+### `@Discord`
+
+引用 Discord 频道的消息。
+
+```json title="config.json"
+{
+  "contextProviders": [
+    {
+      "name": "discord",
+      "params": {
+        "discordKey": "bot token",
+        "guildId": "1234567890",
+        "channels": [
+          {
+            "id": "123456",
+            "name": "example-channel"
+          },
+          {
+            "id": "678901",
+            "name": "example-channel-2"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+确保包含你自己的 [Bot Token](https://discord.com/developers/applications) ，并把它加入你关联的服务器。如果你想要关于搜索哪个频道的更细粒度的控制，你可以指定一个要搜索的频道 ID 列表。如果你不想要指定任何频道，只需要包含 guild id(Server ID) ，所有频道将会被包含。提供者只会读取文本频道。
+
 ### `@Postgres`
 
 关联表的 schema ，和一些示例行
@@ -344,7 +402,7 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
 
 ### `@Database`
 
-关联 Sqlite, Postgres 和 MySQL 数据库的表 schema 。
+关联 Sqlite, Postgres, MSSQL 和 MySQL 数据库的表 schema 。
 
 ```json title="config.json"
 {
@@ -362,6 +420,16 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
               "database": "exampleDB",
               "password": "yourPassword",
               "port": 5432
+            }
+          },
+          {
+            "name": "exampleMssql",
+            "connection_type": "mssql",
+            "connection": {
+              "user": "username",
+              "server": "localhost",
+              "database": "exampleDB",
+              "password": "yourPassword"
             }
           },
           {
@@ -386,15 +454,15 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
 - `mysql`
 - `sqlite`
 
-### `@Locals`
+### `@Debugger`
 
-关联调试器中本地变量的内容。
+关联调试器中本地变量的内容。当前只在 VS Code 中有效。
 
 ```json title="config.json"
 {
   "contextProviders": [
     {
-      "name": "locals",
+      "name": "debugger",
       "params": {
         "stackDepth": 3
       }
@@ -439,6 +507,28 @@ assignee = currentUser() AND resolution = Unresolved order by updated DESC
 }
 ```
 
+### 模型上下文协议
+
+[模型上下文协议](https://modelcontextprotocol.io/introduction) 是一个由 Anthropic 提议的标准，用于统一提示词，上下文和工具使用。 Continue 支持任何 MCP 服务器，使用 MCP 上下文提供者。查看他们的 [快速入门](https://modelcontextprotocol.io/quickstart) 了解如何设置一个本地服务器，然后像这样配置你的 `config.json` ：
+
+```json
+{
+  "experimental": {
+    "modelContextProtocolServers": [
+      {
+        "transport": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": ["mcp-server-sqlite", "--db-path", "/Users/NAME/test.db"]
+        }
+      }
+    ]
+  }
+}
+```
+
+然后你能够输入 "@" ，在上下文提供者下拉框中看到 "MCP" 。
+
 ### `@HTTP`
 
 HttpContextProvider 创建一个 POST 请求到配置中的 url 。服务器必须返回 200 OK ，以及一个 ContextItem 对象或一个 ContextItems 列表。
@@ -449,7 +539,7 @@ HttpContextProvider 创建一个 POST 请求到配置中的 url 。服务器必�
     {
       "name": "http",
       "params": {
-        "url": "https://api.example.com/v1/users",
+        "url": "https://api.example.com/v1/users"
       }
     }
   ]

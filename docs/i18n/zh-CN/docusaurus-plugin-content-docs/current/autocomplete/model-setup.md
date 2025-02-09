@@ -26,25 +26,22 @@ Codestral 的 API key 和通常的 Mistral API 是不同的。如果你使用 Co
 
 ## 本地的，离线的/自托管的体验
 
-对于倾向于本地执行或自托管的， `StarCoder2-3b` 提供了一个对于大多数用户性能和质量的平衡：
+对于倾向于本地执行或自托管的， `Qwen2.5-Coder 1.5B` 提供了一个对于大多数用户性能和质量的平衡：
 
 ```json title="config.json""
 {
   "tabAutocompleteModel": {
-    "title": "StarCoder2-3b",
-    "model": "starcoder2:3b",
+    "title": "Qwen2.5-Coder 1.5B",
+    "model": "qwen2.5-coder:1.5b-base",
     "provider": "ollama"
   }
 }
 ```
 
-## 可替代的体验
-
-- 补全太慢？在更弱的机器上，试试 `deepseek-coder:1.3b-base` 更快的补全
-- 有更多的计算？使用 `deepseek-coder:6.7b-base` 获取可能更高质量的建议
+有更多的计算？使用 `qwen2.5-coder:7b-base` 获取可能更高质量的建议。
 
 :::note
-对于 LM Studio 用户，导航到 "My Models" 章节，找到你想要的模型，复制它的路径 (例如， second-state/StarCoder2-3B-GGUF/starcoder2-3b-Q8_0.gguf) 。使用这个路径作为你的配置中的 `model` 值。
+对于 LM Studio 用户，导航到 "My Models" 章节，找到你想要的模型，复制它的路径（例如， `Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf`）。使用这个路径作为你的配置中的 `model` 值。
 :::
 
 ## 其他体验

@@ -45,6 +45,6 @@ Continue 收集并报告 **匿名** 使用信息，来帮助我们提高产品�
 ### 通过 VS Code 设置禁用遥测
 
 1. 打开 VS Code 。
-2. 导航到 `File` > `Preferences` > `Settings` (或在 Windows/Linux 上使用快捷键 `Ctrl + ,` 或在 macOS 上使用 `Cmd + ,` )。
+2. 导航到 `File` > `Preferences` > `Settings` (或在 Windows/Linux 上使用快捷键 <kbd>ctrl</kbd> + <kbd>,</kbd> 或在 macOS 上使用 <kbd>cmd</kbd> + <kbd>,</kbd> )。
 3. 在搜索栏中，输入 "Continue: Telemetry Enabled" 。
 4. 取消勾选 "Continue: Telemetry Enabled" 选择框。

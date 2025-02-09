@@ -1,5 +1,5 @@
 ---
-title: Reference
+title: config.json Reference
 description: Reference for the Continue _config.json_ configuration file
 keywords: [config, config_schema.json, json]
 ---
@@ -16,9 +16,9 @@ Each model has specific configuration options tailored to its provider and funct
 **Properties:**
 
 - `title` (**required**): The title to assign to your model, shown in dropdowns, etc.
-- `provider` (**required**): The provider of the model, which determines the type and interaction method. Options inclued `openai`, `ollama`, etc., see intelliJ suggestions.
-- `model` (**required**): The name of the model, used for prompt template auto-detection.
-- `apiKey`: API key required by providers like OpenAI, Anthropic, and Cohere.
+- `provider` (**required**): The provider of the model, which determines the type and interaction method. Options inclued `openai`, `ollama`, `xAI`, etc., see IntelliJ suggestions.
+- `model` (**required**): The name of the model, used for prompt template auto-detection. Use `AUTODETECT` special name to get all available models.
+- `apiKey`: API key required by providers like OpenAI, Anthropic, Cohere, and xAI.
 - `apiBase`: The base URL of the LLM API.
 - `contextLength`: Maximum context length of the model, typically in tokens (default: 2048).
 - `maxStopWords`: Maximum number of stop words allowed, to avoid API errors with extensive lists.
@@ -87,11 +87,8 @@ Specifies options for tab autocompletion behavior.
 - `debounceDelay`: Delay (in ms) before triggering autocomplete (default: `350`).
 - `maxSuffixPercentage`: Maximum percentage of prompt for suffix (default: `0.2`).
 - `prefixPercentage`: Percentage of input for prefix (default: `0.3`).
-- `template`: Template string for autocomplete, using Mustache templating.
-- `multilineCompletions`: Controls multiline completions (`"always"`, `"never"`, or `"auto"`) (default: `auto`).
-- `useCache`: If `true`, caches completions (default: `true`).
+- `template`: Template string for autocomplete, using Mustache templating. You can use the `{{{ prefix }}}`, `{{{ suffix }}}`, `{{{ filename }}}`, `{{{ reponame }}}`, and `{{{ language }}}` variables.
 - `onlyMyCode`: If `true`, only includes code within the repository (default: `true`).
-- `disableInFiles`: Array of glob patterns for files where autocomplete is disabled (default: `[]`).
 
 Example
 
@@ -205,10 +202,11 @@ Configuration for the reranker model used in response ranking.
 
 **Properties:**
 
-- `name` (**required**): Reranker name, e.g., `cohere`, `voyage`, `llm`, `free-trial`, `huggingface-tei`
+- `name` (**required**): Reranker name, e.g., `cohere`, `voyage`, `llm`, `free-trial`, `huggingface-tei`, `bedrock`
 - `params`:
   - `model`: Model name
   - `apiKey`: Api key
+  - `region`: Region (for Bedrock only)
 
 Example
 
@@ -235,6 +233,7 @@ List of documentation sites to index.
 <!-- - `rootUrl`: Crawler will only index docs within this domain - pages that contain this URL -->
 - `maxDepth`: Maximum link depth for crawling. Default `4`
 - `favicon`: URL for site favicon (default is `/favicon.ico` from `startUrl`).
+- `useLocalCrawling`: Skip the default crawler and only crawl using a local crawler.
 
 Example
 
@@ -247,16 +246,6 @@ Example
   }
 ]
 ```
-
-### `analytics`
-
-Configuration for analytics tracking.
-
-**Properties:**
-
-- `provider`: Analytics provider (`"posthog"` or `"logstash"`).
-- `url`: URL for analytics data.
-- `clientKey`: Client key for analytics.
 
 ### `slashCommands`
 
@@ -348,37 +337,6 @@ Example
 }
 ```
 
-### `disableSessionTitles`
-
-Prevents generating summary titles for each chat session when set to `true`.
-
-### `ui`
-
-Customizable UI settings to control interface appearance and behavior.
-
-**Properties:**
-
-- `codeBlockToolbarPosition`: Sets the toolbar position within code blocks, either `top` (default) or `bottom`.
-- `fontSize`: Specifies font size for UI elements.
-- `displayRawMarkdown`: If `true`, shows raw markdown in responses.
-- `showChatScrollbar`: If `true`, enables a scrollbar in the chat window.
-
-Example:
-
-```json title="config.json"
-{
-  "ui": {
-    "codeBlockToolbarPosition": "bottom",
-    "fontSize": 14,
-    "displayRawMarkdown": false
-  }
-}
-```
-
-### `allowAnonymousTelemetry`
-
-When `true`, anonymous usage data is collected using Posthog, to improve features. Default is `true`.
-
 ### `userToken`
 
 An optional token that identifies the user, primarily for authenticated services.
@@ -386,10 +344,6 @@ An optional token that identifies the user, primarily for authenticated services
 ### `systemMessage`
 
 Defines a system message that appears before every response from the language model, providing guidance or context.
-
-### `disableIndexing`
-
-Prevents indexing of the codebase, useful primarily for debugging purposes.
 
 ### `experimental`
 
@@ -402,8 +356,6 @@ Several experimental config parameters are available, as described below:
   - `inlineEdit`: Model title for inline edits.
   - `applyCodeBlock`: Model title for applying code blocks.
   - `repoMapFileSelection`: Model title for repo map selections.
-- `readResponseTTS`: If `true`, reads LLM responses aloud with TTS. Default is `true`.
-- `promptPath`: Change the path to custom prompt files from the default ".prompts"
 - `quickActions`: Array of custom quick actions
   - `title` (**required**): Display title for the quick action.
   - `prompt` (**required**): Prompt for quick action.
@@ -413,8 +365,7 @@ Several experimental config parameters are available, as described below:
   - `docstring`: Prompt for adding docstrings.
   - `fix`: Prompt for fixing code.
   - `optimize`: Prompt for optimizing code.
-  - `fixGrammar`: Prompt for fixing grammar or spelling.
-- `useChromiumForDocsCrawling`: Use Chromium to crawl docs locally. Useful if the default Cheerio crawler fails on sites that require JavaScript rendering. Downloads and installs Chromium to `~/.continue/.utils`..
+- `modelContextProtocolServers`: See [Model Context Protocol](/customize/context-providers#model-context-protocol)
 
 Example
 
@@ -424,7 +375,6 @@ Example
     "modelRoles": {
       "inlineEdit": "Edit Model"
     },
-    "promptPath": "custom/.prompts",
     "quickActions": [
       {
         "title": "Tags",
@@ -435,8 +385,40 @@ Example
     "contextMenuPrompts": {
       "fixGrammar": "Fix grammar in the above but allow for typos."
     },
-    "readResponseTTS": false,
-    "useChromiumForDocsCrawling": true
+    "modelContextProtocolServers": [
+      {
+        "transport": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": ["mcp-server-sqlite", "--db-path", "/Users/NAME/test.db"]
+        }
+      }
+    ]
   }
 }
 ```
+
+### Fully deprecated settings
+
+Some deprecated `config.json` settings are no longer stored in config and have been moved to be editable through the [User Settings Page](./customize/settings.md). If found in `config.json`, they will be migrated to the [User Settings Page](./customize/settings.md) and removed from `config.json`.
+
+- `allowAnonymousTelemetry`: This value will be migrated to the safest merged value (`false` if either are `false`).
+- `promptPath`: This value will override during migration.
+- `disableIndexing`: This value will be migrated to the safest merged value (`true` if either are `true`).
+- `disableSessionTitles`/`ui.getChatTitles`: This value will be migrated to the safest merged value (`true` if either are `true`). `getChatTitles` takes precedence if set to false
+- `tabAutocompleteOptions`
+  - `useCache`: This value will override during migration.
+  - `disableInFiles`: This value will be migrated to the safest merged value (arrays of file matches merged/deduplicated)
+  - `multilineCompletions`: This value will override during migration.
+- `experimental`
+  - `useChromiumForDocsCrawling`: This value will override during migration.
+  - `readResponseTTS`: This value will override during migration.
+- `ui` - all will override during migration
+
+  - `codeBlockToolbarPosition`
+  - `fontSize`
+  - `codeWrap`
+  - `displayRawMarkdown`
+  - `showChatScrollbar`
+
+  See [User Settings Page](./customize/settings.md) for more information about each option.

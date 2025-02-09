@@ -31,7 +31,7 @@ Cohere 当前没有提供任何自动补全模型。
 
 ```json title="config.json"
 {
-  "embeddingsProvider": {
+  "reranker": {
     "provider": "cohere",
     "model": "embed-english-v3.0",
     "apiKey": "<COHERE_API_KEY>"
