@@ -48,6 +48,21 @@ Codestral 的 API key 和通常的 Mistral API 是不同的。如果你使用 Co
 对于 LM Studio 用户，导航到 "My Models" 章节，找到你想要的模型，复制它的路径（例如， `Qwen/Qwen2.5-Coder-1.5B-Instruct-GGUF/qwen2.5-coder-1.5b-instruct-q4_k_m.gguf`）。使用这个路径作为你的配置中的 `model` 值。
 :::
 
+### Using a remote instance
+
+When using a remote instance you need to set the `"apiBase"` value in the configuration:
+
+```json title="config.json""
+{
+  "tabAutocompleteModel": {
+    "title": "Qwen2.5-Coder 1.5B",
+    "model": "qwen2.5-coder:1.5b-base",
+    "provider": "ollama"
+    "apiBase": "http://<my endpoint>:11434"
+  }
+}
+```
+
 ## 其他体验
 
 有很多更多的模型或提供者可以用来补全。在 [这里](../customize/model-types/autocomplete.md) 查看它们。
