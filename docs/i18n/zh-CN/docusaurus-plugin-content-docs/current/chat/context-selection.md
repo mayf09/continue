@@ -15,7 +15,7 @@ sidebar_position: 3
 
 ## 活动文件
 
-在发送请求时，你可以通过按下 <kbd>cmd/ctrl</kbd> + <kbd>opt</kbd> + <kbd>enter</kbd> (Mac) 或 <kbd>ctrl</kbd> + <kbd>alt</kbd> + <kbd>enter</kbd> (Windows) 包含当前打开的文件作为上下文。
+在聊天窗口发送请求时（提示词不能为空），你可以通过按下 <kbd>opt</kbd> + <kbd>enter</kbd> (Mac) 或 <kbd>alt</kbd> + <kbd>enter</kbd> (Windows) 包含当前打开的文件作为上下文。
 
 ## 指定文件
 

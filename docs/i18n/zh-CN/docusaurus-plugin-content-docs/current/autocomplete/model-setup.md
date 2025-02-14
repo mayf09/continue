@@ -65,4 +65,4 @@ When using a remote instance you need to set the `"apiBase"` value in the config
 
 ## 其他体验
 
-有很多更多的模型或提供者可以用来补全。在 [这里](../customize/model-types/autocomplete.md) 查看它们。
+有很多更多的模型或提供者可以用来补全。在 [这里](../customize/model-types/autocomplete.md) 查看它们。You can also see more examples of Autocomplete configuration [here](../customize/deep-dives/autocomplete.md)
